@@ -13,27 +13,15 @@
     <Grid>
         <RelativePanel x:Name="rootPanel">
             <StackPanel x:Name="pageHeader" Margin="40,52,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock Text="Get Started" FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}" />
-                <TextBlock Text="Select a floor level to get started." Style="{ThemeResource SubheaderTextBlockStyle}" />
+                <TextBlock Text="Welcome!" FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}" />
+                <TextBlock Text="Select a lab to view its schedule" Style="{ThemeResource SubheaderTextBlockStyle}" />
             </StackPanel>
 
 
-            <GridView x:Name="LabsList" Margin="12,12,0,0" RelativePanel.Below="pageHeader">
-                <GridView.ItemContainerStyle>
-                    <Style TargetType="GridViewItem">
-                        <Setter Property="Margin" Value="24,0,0,0" />
-                    </Style>
-                </GridView.ItemContainerStyle>
+            <GridView x:Name="LabsList" Margin="40,12,0,0" RelativePanel.Below="pageHeader">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="datalayer:Labs">
-                        <StackPanel>
-                            <TextBlock Name="LabName"
-                                       Text="{x:Bind LabName}"/>
-                            <TextBlock Name="LabLocation"
-                                       Text="{x:Bind Location}"/>
-                            <TextBlock Name="LabLevel"
-                                       Text="{x:Bind Level}"/>
-                        </StackPanel>
+                        <local:FloorItem LabName="{x:Bind LabName}" Location="{x:Bind Location}" Level="{x:Bind Level}" />
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>

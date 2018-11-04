@@ -5,12 +5,13 @@
     xmlns:local="using:Lab_Schedule_Display"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Height="192" Width="332" Background="DarkGray">
+    mc:Ignorable="d" Height="192" Width="332">
 
-    <Grid Background="DarkGray">
+    <Grid Background="LightGray">
         <StackPanel Margin="24,28,0,0">
-            <TextBlock x:Name="floorLevel" Text="" FontSize="32" Style="{ThemeResource TitleTextBlockStyle}" />
-            <TextBlock x:Name="location" Text="" FontSize="20" />
+            <TextBlock x:Name="labname" Text="{Binding LabName}" FontSize="32" Style="{ThemeResource TitleTextBlockStyle}" />
+            <TextBlock x:Name="location" Text="{Binding LabLocation}" FontSize="16" />
+            <TextBlock x:Name="level" Text="{Binding Level}" FontSize="16" />
         </StackPanel>
     </Grid>
 </UserControl>

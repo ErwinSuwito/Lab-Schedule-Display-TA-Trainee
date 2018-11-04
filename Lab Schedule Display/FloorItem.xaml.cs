@@ -40,6 +40,18 @@ namespace Lab_Schedule_Display
         public static readonly DependencyProperty LocationProperty =
             DependencyProperty.Register("Location", typeof(string), typeof(FloorItem), new PropertyMetadata(0));
 
+        public string LabName
+        {
+            get { return (string) GetValue(LabNameProperty); }
+            set { SetValue(LabNameProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for LabName.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LabNameProperty =
+            DependencyProperty.Register("LabName", typeof(string), typeof(FloorItem), new PropertyMetadata(0));
+
+
+
         public FloorItem()
         {
             this.InitializeComponent();
