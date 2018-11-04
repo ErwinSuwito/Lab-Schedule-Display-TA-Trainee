@@ -27,20 +27,33 @@ namespace Lab_Schedule_Display
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
+        string GetLabsQuery;
+
         public MainPage()
         {
             this.InitializeComponent();
+           
+        }
+
+        string parameter;
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            parameter = e.Parameter.ToString();
             LabsList.ItemsSource = Getlabs((App.Current as App).ConnectionString);
+            headerText.Text = "Level " + parameter;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         public ObservableCollection<Labs> Getlabs(string connectionString)
         {
-            const string GetLabsQuery = "SELECT * FROM labs";
+            GetLabsQuery = "SELECT * FROM labs WHERE Level=@level";
 
             var labs = new ObservableCollection<Labs>();
             try
@@ -53,6 +66,7 @@ namespace Lab_Schedule_Display
                         using (SqlCommand cmd = conn.CreateCommand())
                         {
                             cmd.CommandText = GetLabsQuery;
+                            cmd.Parameters.Add("@level", System.Data.SqlDbType.Int, 1).Value = parameter;
                             using (SqlDataReader dr = cmd.ExecuteReader())
                             {
                                 while (dr.Read())
@@ -74,6 +88,11 @@ namespace Lab_Schedule_Display
                 Helpers.ShowMsgComplete(exSql.Message, "Unable to connect to the database");
             }
             return null;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SelectFloorPage));
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="Lab_Schedule_Display.DataLayers.LevelItem"
+    x:Class="Lab_Schedule_Display.LevelItem"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Lab_Schedule_Display.DataLayers"
@@ -12,5 +12,6 @@
             <TextBlock x:Name="level" Text="{Binding Level}" FontWeight="Bold" FontSize="60" />
             <TextBlock Text="Level" FontSize="24" />
         </StackPanel>
+        <Rectangle Fill="Transparent" Tapped="Rectangle_Tapped"/>
     </Grid>
 </UserControl>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -15,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace Lab_Schedule_Display.DataLayers
+namespace Lab_Schedule_Display
 {
     public sealed partial class LevelItem : UserControl
     {
@@ -32,6 +33,11 @@ namespace Lab_Schedule_Display.DataLayers
         public LevelItem()
         {
             this.InitializeComponent();
+        }
+
+        private void Rectangle_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            (Window.Current.Content as Frame).Navigate(typeof(MainPage), level.Text);
         }
     }
 }
