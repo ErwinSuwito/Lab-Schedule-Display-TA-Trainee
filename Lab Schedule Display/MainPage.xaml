@@ -3,11 +3,12 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Lab_Schedule_Display"
+    xmlns:datalayer="using:Lab_Schedule_Display.DataLayers"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="LightGray">
+    mc:Ignorable="d" Loaded="Page_Loaded"
+    Background="Gray">
 
     <Grid>
         <RelativePanel x:Name="rootPanel">
@@ -17,14 +18,24 @@
             </StackPanel>
 
 
-            <GridView x:Name="floorLevel" Margin="12,12,0,0" RelativePanel.Below="pageHeader">
+            <GridView x:Name="LabsList" Margin="12,12,0,0" RelativePanel.Below="pageHeader">
                 <GridView.ItemContainerStyle>
                     <Style TargetType="GridViewItem">
                         <Setter Property="Margin" Value="24,0,0,0" />
                     </Style>
                 </GridView.ItemContainerStyle>
-                <local:FloorItem />
-                <local:FloorItem />
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="datalayer:Labs">
+                        <StackPanel>
+                            <TextBlock Name="LabName"
+                                       Text="{x:Bind LabName}"/>
+                            <TextBlock Name="LabLocation"
+                                       Text="{x:Bind Location}"/>
+                            <TextBlock Name="LabLevel"
+                                       Text="{x:Bind Level}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
             </GridView>
         </RelativePanel>
     </Grid>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -35,12 +36,22 @@ namespace Lab_Schedule_Display
             this.Suspending += OnSuspending;
         }
 
+        //connection string
+        private string connectionString = @"Data Source=DESKTOP-1M3V4GT; Initial Catalog=LabSchedule; Integrated Security=SSPI";
+        public string ConnectionString { get => connectionString; set => connectionString = value; }
+
         public void Startup()
         {
             this.FocusVisualKind = FocusVisualKind.Reveal;
 
             ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            bool tryEnterFullScreen = ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
+            bool tryEnterFullScreen = false;
+
+            if (!Debugger.IsAttached)
+            {
+                tryEnterFullScreen = ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
+            }
+           
             if (tryEnterFullScreen != true)
             {
                 CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
