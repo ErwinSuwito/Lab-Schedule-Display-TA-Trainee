@@ -8,7 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Loaded="Page_Loaded"
-    Background="Gray">
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}">
 
     <Grid>
         <RelativePanel x:Name="rootPanel">
@@ -17,11 +17,10 @@
                 <TextBlock Text="Select a lab to view its schedule" Style="{ThemeResource SubheaderTextBlockStyle}" />
             </StackPanel>
 
-
             <GridView x:Name="LabsList" Margin="40,12,0,0" RelativePanel.Below="pageHeader">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="datalayer:Labs">
-                        <local:FloorItem LabName="{x:Bind LabName}" Location="{x:Bind Location}" Level="{x:Bind Level}" />
+                        <local:LabItem LabName="{x:Bind LabName}" LabLocation="{x:Bind LabLocation}" Level="{x:Bind Level}" />
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>

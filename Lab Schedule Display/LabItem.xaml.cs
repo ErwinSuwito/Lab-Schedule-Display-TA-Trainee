@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Lab_Schedule_Display
 {
-    public sealed partial class FloorItem : UserControl
+    public sealed partial class LabItem : UserControl
     {
 
         public string Level
@@ -28,9 +28,9 @@ namespace Lab_Schedule_Display
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty levelLevel =
-            DependencyProperty.Register("Level", typeof(string), typeof(FloorItem), new PropertyMetadata(null));
+            DependencyProperty.Register("Level", typeof(string), typeof(LabItem), new PropertyMetadata(null));
 
-        public string Location
+        public string LabLocation
         {
             get { return (string)GetValue(LocationProperty); }
             set { SetValue(LocationProperty, value); }
@@ -38,7 +38,7 @@ namespace Lab_Schedule_Display
 
         // Using a DependencyProperty as the backing store for Location.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LocationProperty =
-            DependencyProperty.Register("Location", typeof(string), typeof(FloorItem), new PropertyMetadata(0));
+            DependencyProperty.Register("Location", typeof(string), typeof(LabItem), new PropertyMetadata(0));
 
         public string LabName
         {
@@ -48,11 +48,9 @@ namespace Lab_Schedule_Display
 
         // Using a DependencyProperty as the backing store for LabName.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LabNameProperty =
-            DependencyProperty.Register("LabName", typeof(string), typeof(FloorItem), new PropertyMetadata(0));
+            DependencyProperty.Register("LabName", typeof(string), typeof(LabItem), new PropertyMetadata(0));
 
-
-
-        public FloorItem()
+        public LabItem()
         {
             this.InitializeComponent();
         }

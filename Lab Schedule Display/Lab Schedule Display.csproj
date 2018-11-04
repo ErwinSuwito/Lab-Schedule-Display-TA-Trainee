@@ -96,8 +96,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataLayers\Labs.cs" />
-    <Compile Include="FloorItem.xaml.cs">
-      <DependentUpon>FloorItem.xaml</DependentUpon>
+    <Compile Include="DataLayers\LevelItem.xaml.cs">
+      <DependentUpon>LevelItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LabItem.xaml.cs">
+      <DependentUpon>LabItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -126,7 +129,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="FloorItem.xaml">
+    <Page Include="DataLayers\LevelItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LabItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

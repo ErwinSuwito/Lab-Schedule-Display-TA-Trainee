@@ -10,7 +10,7 @@ namespace Lab_Schedule_Display.DataLayers
     public class Labs : INotifyPropertyChanged
     {
         public string LabName { get; set; }
-        public string Location { get; set; }
+        public string LabLocation { get; set; }
         public string Level { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;

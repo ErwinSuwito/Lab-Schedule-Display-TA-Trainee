@@ -59,7 +59,7 @@ namespace Lab_Schedule_Display
                                 {
                                     var lab = new Labs();
                                     lab.LabName = dr.GetString(0);
-                                    lab.Location = dr.GetString(1);
+                                    lab.LabLocation = dr.GetString(1);
                                     lab.Level = "Level " + dr.GetInt32(2).ToString();
                                     labs.Add(lab);
                                 }

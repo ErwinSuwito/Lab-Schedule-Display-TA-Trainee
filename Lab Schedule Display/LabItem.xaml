@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="Lab_Schedule_Display.FloorItem"
+    x:Class="Lab_Schedule_Display.LabItem"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Lab_Schedule_Display"
@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Height="192" Width="332">
 
-    <Grid Background="LightGray">
+    <Grid Background="#66DDDDDD">
         <StackPanel Margin="24,28,0,0">
             <TextBlock x:Name="labname" Text="{Binding LabName}" FontSize="32" Style="{ThemeResource TitleTextBlockStyle}" />
             <TextBlock x:Name="location" Text="{Binding LabLocation}" FontSize="16" />
