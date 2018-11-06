@@ -50,7 +50,7 @@ namespace Lab_Schedule_Display
                     {
                         using (SqlCommand cmd = conn.CreateCommand())
                         {
-                            cmd.CommandText = "SELECT * FROM Schedule WHERE EndTime > CONVERT (time, GETDATE()) AND LabName=@labName";
+                            cmd.CommandText = "SELECT * FROM Schedule WHERE EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = GETDATE()";
                             cmd.Parameters.AddWithValue("@labName", labName);
                             using (SqlDataReader dr = cmd.ExecuteReader())
                             {
@@ -102,7 +102,7 @@ namespace Lab_Schedule_Display
 
         public ObservableCollection<Schedules> GetSchedules(string connectionString)
         {
-            string GetSchedulesQuery = "SELECT Schedule.LabName, Schedule.ModuleCode, lecturer.LecName, IntakeCode, ModuleName, StartTime, EndTime FROM Schedule JOIN lecturer ON lecturer.LecturerID = Schedule.LecturerID JOIN modules ON modules.ModuleCode = Schedule.ModuleCode WHERE Schedule.LabName=@labName";
+            string GetSchedulesQuery = "SELECT Schedule.LabName, Schedule.ModuleCode, lecturer.LecName, IntakeCode, ModuleName, StartTime, EndTime FROM Schedule JOIN lecturer ON lecturer.LecturerID = Schedule.LecturerID JOIN modules ON modules.ModuleCode = Schedule.ModuleCode WHERE Schedule.LabName=@labName AND UseDate = GETDATE()";
             var schedules = new ObservableCollection<Schedules>();
             try
             {
@@ -139,6 +139,19 @@ namespace Lab_Schedule_Display
                 Helpers.ShowMsgComplete(exSql.Message, "Unable to connect to the database");
             }
             return null;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (LabScheduleView.Items.Count == 0)
+            {
+                LabScheduleView.Visibility = Visibility.Collapsed;
+                LabScheduleHeader.Visibility = Visibility.Collapsed;
+                labStatus.Text = "No classes are scheduled in this lab. This lab is available for use.";
+                symbolIcon1.Symbol = Symbol.Accept;
+                rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 33, 114, 33));
+            }
+
         }
     }
 }
