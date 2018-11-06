@@ -50,7 +50,7 @@ namespace Lab_Schedule_Display
                     {
                         using (SqlCommand cmd = conn.CreateCommand())
                         {
-                            cmd.CommandText = "SELECT * FROM Schedule WHERE EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = GETDATE()";
+                            cmd.CommandText = "SELECT * FROM Schedule WHERE EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
                             cmd.Parameters.AddWithValue("@labName", labName);
                             using (SqlDataReader dr = cmd.ExecuteReader())
                             {
@@ -102,7 +102,7 @@ namespace Lab_Schedule_Display
 
         public ObservableCollection<Schedules> GetSchedules(string connectionString)
         {
-            string GetSchedulesQuery = "SELECT Schedule.LabName, Schedule.ModuleCode, lecturer.LecName, IntakeCode, ModuleName, StartTime, EndTime FROM Schedule JOIN lecturer ON lecturer.LecturerID = Schedule.LecturerID JOIN modules ON modules.ModuleCode = Schedule.ModuleCode WHERE Schedule.LabName=@labName AND UseDate = GETDATE()";
+            string GetSchedulesQuery = "SELECT Schedule.LabName, Schedule.ModuleCode, lecturer.LecName, IntakeCode, ModuleName, StartTime, EndTime FROM Schedule JOIN lecturer ON lecturer.LecturerID = Schedule.LecturerID JOIN modules ON modules.ModuleCode = Schedule.ModuleCode WHERE Schedule.LabName=@labName AND UseDate =CONVERT (date, GETDATE())";
             var schedules = new ObservableCollection<Schedules>();
             try
             {

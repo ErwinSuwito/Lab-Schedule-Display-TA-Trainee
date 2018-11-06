@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="2261eb69-7e4e-4d56-89c1-421464a701ca" Publisher="CN=Erwin" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="2261eb69-7e4e-4d56-89c1-421464a701ca" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="29437ErwinSuwitoandojo.LabScheduleDisplay" Publisher="CN=EB87CADD-5C4D-4A02-8C6B-C25705F9A969" Version="0.1.0.0" />
+  <mp:PhoneIdentity PhoneProductId="7318b12f-2006-4054-8337-d2165a8a8744" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Lab Schedule Display</DisplayName>
-    <PublisherDisplayName>Erwin</PublisherDisplayName>
+    <PublisherDisplayName>Erwin Suwitoandojo</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -20,9 +20,9 @@
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
-     <Extensions>
-        <uap:Extension Category="windows.lockScreenCall" />
+      <Extensions>
         <uap:Extension Category="windows.aboveLockScreen" />
+        <uap:Extension Category="windows.lockScreenCall" />
       </Extensions>
     </Application>
   </Applications>

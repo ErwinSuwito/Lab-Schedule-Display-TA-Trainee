@@ -14,7 +14,7 @@
             
             <StackPanel x:Name="pageHeader" Margin="60,108,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <TextBlock Text="Welcome!" FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}" />
-                <TextBlock Text="Select a level to view labs" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                <TextBlock Text="Select a level to view labs. Or swipe the screen to see available labs." Style="{ThemeResource SubheaderTextBlockStyle}" />
             </StackPanel>
 
             <GridView x:Name="LabsList" Margin="60,12,0,0" RelativePanel.Below="pageHeader">
