@@ -38,9 +38,7 @@ namespace Lab_Schedule_Display
 
         static Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
-        //connection string DESKTOP-325BGVP
-        //private string connectionString = @"Data Source=" + localSettings.Values["machinename"].ToString() + "; Initial Catalog=LabSchedule; Integrated Security=SSPI";
-        public string connectionString = @"Data Source=.; Initial Catalog=LabSchedule; Integrated Security=SSPI";
+        public string connectionString = @"Data Source=.; Initial Catalog=LabSchedule; Integrated Security=SSPI; MultipleActiveResultSets=True;";
         public string ConnectionString { get => connectionString; set => connectionString = value; }
 
         public void Startup()
@@ -102,7 +100,7 @@ namespace Lab_Schedule_Display
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(SelectFloorPage), e.Arguments);
+                    rootFrame.Navigate(typeof(newHome), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

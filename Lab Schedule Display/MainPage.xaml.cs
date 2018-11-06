@@ -91,7 +91,7 @@ namespace Lab_Schedule_Display
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(SelectFloorPage));
+            this.Frame.Navigate(typeof(newHome));
         }
     }
 }

@@ -108,11 +108,17 @@
     <Compile Include="DataLayers\Labs.cs" />
     <Compile Include="DataLayers\Levels.cs" />
     <Compile Include="DataLayers\Schedules.cs" />
+    <Compile Include="LabItemnew.xaml.cs">
+      <DependentUpon>LabItemnew.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LabPage.xaml.cs">
       <DependentUpon>LabPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="LevelItem.xaml.cs">
       <DependentUpon>LevelItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="newHome.xaml.cs">
+      <DependentUpon>newHome.xaml</DependentUpon>
     </Compile>
     <Compile Include="SelectFloorPage.xaml.cs">
       <DependentUpon>SelectFloorPage.xaml</DependentUpon>
@@ -153,11 +159,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LabItemnew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="LabPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LevelItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="newHome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

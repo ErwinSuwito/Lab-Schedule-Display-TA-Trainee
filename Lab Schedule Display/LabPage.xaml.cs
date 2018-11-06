@@ -90,13 +90,13 @@ namespace Lab_Schedule_Display
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (labName.Contains("TL04"))
+            if (this.Frame.CanGoBack)
             {
-                this.Frame.Navigate(typeof(MainPage), 4);
+                this.Frame.GoBack();
             }
-            else if (labName.Contains("TL06"))
+            else
             {
-                this.Frame.Navigate(typeof(MainPage), 6);
+                this.Frame.Navigate(typeof(newHome));
             }
         }
 

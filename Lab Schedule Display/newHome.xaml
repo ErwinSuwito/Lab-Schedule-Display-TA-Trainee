@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="Lab_Schedule_Display.newHome"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Lab_Schedule_Display"
+    xmlns:datalayer="using:Lab_Schedule_Display.DataLayers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+ 
+    <Grid>
+        <RelativePanel>
+            <TextBlock x:Name="headerText" Text="Welcome!" Margin="60,108,0,0" FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}" />
+            <TextBlock x:Name="subheaderText" Margin="60,0,0,0" RelativePanel.Below="headerText" Style="{ThemeResource SubheaderTextBlockStyle}" Text="Browse labs by floor or swipe across the screen to see lab availability." />
+            <Pivot RelativePanel.Below="subheaderText" Margin="52,12,52,0">
+                <PivotItem Header="Browse by Floor">
+                    <GridView x:Name="LabsList" Margin="0,12,0,0">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="datalayer:Levels">
+                                <local:LevelItem Level="{x:Bind Level}" />
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                </PivotItem>
+                <PivotItem Header="Lab Availability">
+                    <Grid MinHeight="630">
+                        <TimePicker VerticalAlignment="TOp" x:Name="timePicker1" TimeChanged="timePicker1_TimeChanged"  Header="Select a time:"/>
+                        <GridView VerticalAlignment="Top" x:Name="AvailableLabsList" Margin="0,60,0,0">
+                            <GridView.ItemTemplate>
+                                <DataTemplate x:DataType="datalayer:Labs">
+                                    <local:LabItemnew LabName="{x:Bind LabName}" LabLocation="{x:Bind LabLocation}" Level="{x:Bind Level}" />
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </Grid>
+                </PivotItem>
+            </Pivot>
+        </RelativePanel>
+        
+    </Grid>
+</Page>
