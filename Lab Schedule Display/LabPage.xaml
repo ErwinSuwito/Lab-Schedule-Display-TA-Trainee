@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="Lab_Schedule_Display.LabPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Lab_Schedule_Display"
+    xmlns:datalayer="using:Lab_Schedule_Display.DataLayers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+
+    <Grid>
+        <RelativePanel x:Name="rootPanel">
+            <Button Click="Button_Click" Style="{ThemeResource ButtonRevealStyle}" Height="44" Width ="100" Margin="60,52,0,0">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Margin="0,5,0,0" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="&#xE72B;"/>
+                        <TextBlock Text="Back" Margin="8,-2,0,0" FontSize="20"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+            <StackPanel x:Name="pageHeader" Margin="60,108,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock x:Name= "headerText" Text="Welcome!" FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}" />
+                <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                    <SymbolIcon x:Name="symbolIcon1" Margin="12,12,0,0 " Symbol="Accept" RenderTransformOrigin="0.5,0.5" >
+                        <SymbolIcon.RenderTransform>
+                            <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
+                        </SymbolIcon.RenderTransform>
+                    </SymbolIcon>
+                    <TextBlock x:Name="labStatus" Margin="24,6,0,0" Text="This lab is available for use." Style="{ThemeResource SubheaderTextBlockStyle}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <TextBlock Text="Today's schedule" Margin="60,24,0,0" x:Name="LabScheduleHeader" RelativePanel.Below="pageHeader" Style="{ThemeResource TitleTextBlockStyle}" />
+            <ListView Margin="60,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="LabScheduleView" RelativePanel.Below="LabScheduleHeader">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock x:Name="moduleTitle" FontSize="24" FontWeight="SemiBold" Text="{Binding ModuleName}" />
+                            <TextBlock x:Name="moduleCode" FontSize="22" Text="{Binding ModuleCode}" />
+                            <TextBlock x:Name="lecName" FontSize="22" Text="{Binding LecturerName}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="startTime" Text="{Binding StartTime}" FontSize="20"/>
+                                <TextBlock Text=" -  " FontSize="20"/>
+                                <TextBlock Text="{Binding EndTime}" x:Name="endTime" FontSize="20"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </RelativePanel>
+    </Grid>
+</Page>

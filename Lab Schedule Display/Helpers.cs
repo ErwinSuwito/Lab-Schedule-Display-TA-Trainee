@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,24 @@ namespace Lab_Schedule_Display
             var HasInternetAccess = (connectionProfile != null &&
                 connectionProfile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess);
             return HasInternetAccess;
+        }
+
+        static public bool ConnectionTest { get { return CheckDbConnection(); } }
+
+        private static bool CheckDbConnection()
+        {
+            using (var connectTest = new SqlConnection((App.Current as App).ConnectionString))
+            {
+                try
+                {
+                    connectTest.Open();
+                }
+                catch (SqlException)
+                {
+                    return false;
+                }
+                return true;
+            }
         }
     }
 }

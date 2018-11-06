@@ -36,8 +36,11 @@ namespace Lab_Schedule_Display
             this.Suspending += OnSuspending;
         }
 
-        //connection string
-        private string connectionString = @"Data Source=DESKTOP-1M3V4GT; Initial Catalog=LabSchedule; Integrated Security=SSPI";
+        static Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
+        //connection string DESKTOP-325BGVP
+        //private string connectionString = @"Data Source=" + localSettings.Values["machinename"].ToString() + "; Initial Catalog=LabSchedule; Integrated Security=SSPI";
+        public string connectionString = @"Data Source=.; Initial Catalog=LabSchedule; Integrated Security=SSPI";
         public string ConnectionString { get => connectionString; set => connectionString = value; }
 
         public void Startup()

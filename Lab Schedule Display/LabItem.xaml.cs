@@ -55,5 +55,9 @@ namespace Lab_Schedule_Display
             this.InitializeComponent();
         }
 
+        private void Rectangle_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            (Window.Current.Content as Frame).Navigate(typeof(LabPage), LabName);
+        }
     }
 }

@@ -33,7 +33,6 @@ namespace Lab_Schedule_Display
         public MainPage()
         {
             this.InitializeComponent();
-           
         }
 
         string parameter;
