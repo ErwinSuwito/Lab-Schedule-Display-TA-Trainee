@@ -13,6 +13,8 @@ namespace Lab_Schedule_Display.DataLayers
         public string LabLocation { get; set; }
         public string Level { get; set; }
 
+        public string SelectedTime { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyEventChanged(string propertyName)
         {

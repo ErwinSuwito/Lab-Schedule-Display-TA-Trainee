@@ -34,28 +34,30 @@ namespace Lab_Schedule_Display
         {
             this.InitializeComponent();
 
-            //fetch data from db
-            LabsList.ItemsSource = GetLevels((App.Current as App).ConnectionString);
-            AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString);
 
-            //setting up dispatchertimer to update time and update lab availability.
+            //fetching data from db
+            LabsList.ItemsSource = GetLevels((App.Current as App).ConnectionString);
+            AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString, DateTime.Now.TimeOfDay);
+
+            //setting up dispatchertimer to update time and refresh availability.
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Interval = new TimeSpan(0, 1, 0);
             dispatcherTimer.Tick += DispatcherTimer_Tick;
             dispatcherTimer.Start();
             currentTime.Text = DateTime.Now.ToShortTimeString();
             currentDate.Text = DateTime.Now.ToLongDateString();
+
         }
 
         private void DispatcherTimer_Tick(object sender, object e)
         {
             currentTime.Text = DateTime.Now.ToShortTimeString();
-            AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString);
+            AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString, timePicker1.Time);
         }
 
-        public ObservableCollection<Labs> GetLabs(string connectionString)
+        public ObservableCollection<Labs> GetLabs(string connectionString, TimeSpan timeSpan)
         {
-            const string GetLabsQuery = "SELECT DISTINCT * FROM labs WHERE labs.CloseTime > CONVERT(time, GETDATE())";
+            string GetLabsQuery = "SELECT DISTINCT * FROM labs WHERE labs.CloseTime > CONVERT(time,'" + timePicker1.Time.ToString() + "')";
 
             var labs = new ObservableCollection<Labs>();
             try
@@ -75,6 +77,8 @@ namespace Lab_Schedule_Display
                                     var lab = new Labs();
                                     lab.LabName = dr.GetString(0);
                                     lab.LabLocation = dr.GetString(1);
+                                    //string timePickerTime = timePicker1.Time.ToString();
+                                    lab.SelectedTime = timePicker1.Time.ToString();
                                     lab.Level = "Level " + dr.GetInt32(2).ToString();
                                     labs.Add(lab);
                                 }
@@ -125,6 +129,22 @@ namespace Lab_Schedule_Display
                 Helpers.ShowMsgComplete(exSql.Message, "Unable to connect to the database.");
             }
             return null;
+        }
+
+        private void timePicker1_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
+        {
+            selectedTime = timePicker1.Time;
+            AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString, timePicker1.Time);
+            if (AvailableLabsList.Items.Count == 0)
+            {
+                AvailableLabsList.Visibility = Visibility.Collapsed;
+                DropShadowPanel1.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                AvailableLabsList.Visibility = Visibility.Visible;
+                DropShadowPanel1.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

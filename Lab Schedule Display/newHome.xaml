@@ -41,7 +41,7 @@
                             <GridView VerticalAlignment="Top" x:Name="AvailableLabsList" Margin="0,78,0,0">
                                 <GridView.ItemTemplate>
                                     <DataTemplate x:DataType="datalayer:Labs">
-                                        <local:LabItemnew LabName="{x:Bind LabName}" LabLocation="{x:Bind LabLocation}" Level="{x:Bind Level}"/>
+                                        <local:LabItemnew LabName="{x:Bind LabName}" LabLocation="{x:Bind LabLocation}" SelectedTime="{Binding SelectedTime}" Level="{x:Bind Level}"/>
                                     </DataTemplate>
                                 </GridView.ItemTemplate>
                             </GridView>
