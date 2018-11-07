@@ -5,14 +5,15 @@
     xmlns:local="using:Lab_Schedule_Display"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Height="192" Width="332">
+    mc:Ignorable="d" Height="322" Width="528" Loaded="UserControl_Loaded">
 
     <Grid Background="#66DDDDDD">
-        
+        <Image x:Name="bgPicture" Stretch="UniformToFill" />
+        <Grid x:Name="bgFilter" Visibility="Collapsed" Background="#99000000"/>
         <StackPanel Margin="24,28,0,0">
-            <TextBlock x:Name="labname" Text="{Binding LabName}" FontSize="32" Style="{ThemeResource TitleTextBlockStyle}" />
-            <TextBlock x:Name="location" Text="{Binding LabLocation}" FontSize="16" />
-            <TextBlock x:Name="level" Text="{Binding Level}" FontSize="16" />
+            <TextBlock x:Name="labname" Text="{Binding LabName}" FontSize="52" Style="{ThemeResource TitleTextBlockStyle}" />
+            <TextBlock x:Name="location" Text="{Binding LabLocation}" FontSize="24" />
+            <TextBlock x:Name="level" Text="{Binding Level}" FontSize="24" />
         </StackPanel>
         <Rectangle Fill="Transparent" Tapped="Rectangle_Tapped"/>
     </Grid>

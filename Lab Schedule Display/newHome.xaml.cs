@@ -34,6 +34,8 @@ namespace Lab_Schedule_Display
         {
             this.InitializeComponent();
 
+            //cache the page
+            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
 
             //fetching data from db
             LabsList.ItemsSource = GetLevels((App.Current as App).ConnectionString);
@@ -47,6 +49,14 @@ namespace Lab_Schedule_Display
             currentTime.Text = DateTime.Now.ToShortTimeString();
             currentDate.Text = DateTime.Now.ToLongDateString();
 
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+
+            LabsList.SelectedItem = null;
+            AvailableLabsList.SelectedItem = null;
         }
 
         private void DispatcherTimer_Tick(object sender, object e)

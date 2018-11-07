@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
@@ -58,6 +59,20 @@ namespace Lab_Schedule_Display
         private void Rectangle_Tapped(object sender, TappedRoutedEventArgs e)
         {
             (Window.Current.Content as Frame).Navigate(typeof(LabPage), LabName);
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (labname.Text == "TL04-04")
+            {
+                bgPicture.Source = new BitmapImage(new Uri(this.BaseUri, "/LabAssets/TL04-04.jpeg"));
+                bgFilter.Visibility = Visibility.Visible;
+            }
+            else if(labname.Text == "TL04-06")
+            {
+                bgPicture.Source = new BitmapImage(new Uri(this.BaseUri, "/LabAssets/TL04-06.jpeg"));
+                bgFilter.Visibility = Visibility.Visible;
+            }
         }
     }
 }

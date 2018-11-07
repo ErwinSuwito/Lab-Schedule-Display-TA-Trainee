@@ -18,6 +18,7 @@ using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using Windows.UI;
+using Windows.UI.Xaml.Media.Imaging;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -58,14 +59,28 @@ namespace Lab_Schedule_Display
                                 {
                                     labStatus.Text = "This lab is unavailable for use.";
                                     symbolIcon1.Symbol = Symbol.Cancel;
-                                    rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
+                                    //rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
+                                    Windows.UI.Xaml.Media.AcrylicBrush myBrush = new Windows.UI.Xaml.Media.AcrylicBrush();
+                                    myBrush.BackgroundSource = Windows.UI.Xaml.Media.AcrylicBackgroundSource.Backdrop;
+                                    myBrush.TintColor = Color.FromArgb(51, 114, 33, 33);
+                                    myBrush.FallbackColor = Color.FromArgb(51, 114, 33, 33);
+                                    myBrush.TintOpacity = 0.5;
+
+                                    backgroundAcrylic.Background = myBrush;
                                 }
                                 else
                                 {
                                     labStatus.Text = "This lab is available for use.";
                                     symbolIcon1.Symbol = Symbol.Accept;
-                                    rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 33, 114, 33));
-                                   
+                                    //rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 33, 114, 33));
+
+                                    Windows.UI.Xaml.Media.AcrylicBrush myBrush = new Windows.UI.Xaml.Media.AcrylicBrush();
+                                    myBrush.BackgroundSource = Windows.UI.Xaml.Media.AcrylicBackgroundSource.Backdrop;
+                                    myBrush.TintColor = Color.FromArgb(51, 33, 114, 33);
+                                    myBrush.FallbackColor = Color.FromArgb(51, 33, 114, 33);
+                                    myBrush.TintOpacity = 0.9;
+
+                                    backgroundAcrylic.Background = myBrush;
                                 }
                             }
                             cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time, GETDATE()) < CloseTime";
@@ -76,6 +91,14 @@ namespace Lab_Schedule_Display
                                     labStatus.Text = "This lab has been closed.";
                                     symbolIcon1.Symbol = Symbol.Cancel;
                                     rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
+
+                                    Windows.UI.Xaml.Media.AcrylicBrush myBrush = new Windows.UI.Xaml.Media.AcrylicBrush();
+                                    myBrush.BackgroundSource = Windows.UI.Xaml.Media.AcrylicBackgroundSource.Backdrop;
+                                    myBrush.TintColor = Color.FromArgb(51, 114, 33, 33);
+                                    myBrush.FallbackColor = Color.FromArgb(51, 114, 33, 33);
+                                    myBrush.TintOpacity = 0.5;
+
+                                    backgroundAcrylic.Background = myBrush;
                                 }
                             }
                         }
@@ -155,6 +178,10 @@ namespace Lab_Schedule_Display
                 }
             }
 
+            if (headerText.Text == "TL04-04")
+            {
+                bgImage.Source = new BitmapImage(new Uri(this.BaseUri, "/LabAssets/TL04-04.jpeg"));
+            }
         }
     }
 }
