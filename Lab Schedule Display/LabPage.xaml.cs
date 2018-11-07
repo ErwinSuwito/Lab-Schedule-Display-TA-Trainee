@@ -48,9 +48,9 @@ namespace Lab_Schedule_Display
                     conn.Open();
                     if (conn.State == System.Data.ConnectionState.Open)
                     {
-                        using (SqlCommand cmd = conn.CreateCommand())
+                        using (SqlCommand cmd = conn.CreateCommand()) 
                         {
-                            cmd.CommandText = "SELECT * FROM Schedule WHERE EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
+                            cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT(time, GETDATE()) AND EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
                             cmd.Parameters.AddWithValue("@labName", labName);
                             using (SqlDataReader dr = cmd.ExecuteReader())
                             {
@@ -145,11 +145,14 @@ namespace Lab_Schedule_Display
         {
             if (LabScheduleView.Items.Count == 0)
             {
-                LabScheduleView.Visibility = Visibility.Collapsed;
-                LabScheduleHeader.Visibility = Visibility.Collapsed;
-                labStatus.Text = "No classes are scheduled in this lab. This lab is available for use.";
-                symbolIcon1.Symbol = Symbol.Accept;
-                rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 33, 114, 33));
+                if (labStatus.Text != "This lab has been closed.")
+                {
+                    LabScheduleView.Visibility = Visibility.Collapsed;
+                    LabScheduleHeader.Visibility = Visibility.Collapsed;
+                    labStatus.Text = "No classes are scheduled in this lab. This lab is available for use.";
+                    symbolIcon1.Symbol = Symbol.Accept;
+                    rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 33, 114, 33));
+                }
             }
 
         }

@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Lab_Schedule_Display"
     xmlns:datalayer="using:Lab_Schedule_Display.DataLayers"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -25,18 +26,35 @@
                 </PivotItem>
                 <PivotItem Header="Lab Availability">
                     <Grid MinHeight="630">
-                        <TimePicker VerticalAlignment="TOp" x:Name="timePicker1" TimeChanged="timePicker1_TimeChanged"  Header="Select a time:"/>
-                        <GridView VerticalAlignment="Top" x:Name="AvailableLabsList" Margin="0,60,0,0">
-                            <GridView.ItemTemplate>
-                                <DataTemplate x:DataType="datalayer:Labs">
-                                    <local:LabItemnew LabName="{x:Bind LabName}" LabLocation="{x:Bind LabLocation}" Level="{x:Bind Level}" />
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
+                        <controls:DropShadowPanel x:Name="DropShadowPanel1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                  BlurRadius="20.0" ShadowOpacity="0.40" OffsetX="0" OffsetY="8.0" Color="Black" Visibility="Collapsed">
+                            <Grid x:Name="dbError" Height="320" Width="580" Background="#FF3A3A3A" VerticalAlignment="Top" HorizontalAlignment="Left" >
+                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                                    <StackPanel Margin="40,44,24,24">
+                                        <TextBlock Text=":(" FontSize="80"/>
+                                        <TextBlock Text="All labs are closed." Style="{ThemeResource HeaderTextBlockStyle}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </controls:DropShadowPanel>
+                        <Grid x:Name="defaultPanel">
+                            <TimePicker VerticalAlignment="Top" x:Name="timePicker1" Margin="0,8,0,0" TimeChanged="timePicker1_TimeChanged"  Header="Select a time:"/>
+                            <GridView VerticalAlignment="Top" x:Name="AvailableLabsList" Margin="0,78,0,0">
+                                <GridView.ItemTemplate>
+                                    <DataTemplate x:DataType="datalayer:Labs">
+                                        <local:LabItemnew LabName="{x:Bind LabName}" LabLocation="{x:Bind LabLocation}" Level="{x:Bind Level}" />
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+                            </GridView>
+                        </Grid>
                     </Grid>
                 </PivotItem>
             </Pivot>
         </RelativePanel>
-        
+
+        <StackPanel Margin="0,86,52,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <TextBlock Text="13:00" x:Name="currentTime" FontWeight="SemiBold" TextAlignment="Right" Style="{ThemeResource SubheaderTextBlockStyle}"/>
+            <TextBlock Text="Tuesday, 7 November 2018" x:Name="currentDate" TextAlignment="Right" FontWeight="SemiBold" Style="{ThemeResource TitleTextBlockStyle}"/>
+        </StackPanel>
     </Grid>
 </Page>

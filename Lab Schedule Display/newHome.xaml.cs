@@ -31,12 +31,18 @@ namespace Lab_Schedule_Display
         {
             this.InitializeComponent();
             LabsList.ItemsSource = GetLevels((App.Current as App).ConnectionString);
-            AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString);
-            if (AvailableLabsList.Items.Count == 0)
-            {
-                AvailableLabsList.Visibility = Visibility.Collapsed;
-                //add a stackpanel to show that there are no available labs
-            }
+            timePicker1.Time = DateTime.Now.TimeOfDay;
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 30);
+            dispatcherTimer.Tick += DispatcherTimer_Tick;
+            dispatcherTimer.Start();
+            currentTime.Text = DateTime.Now.ToShortTimeString();
+            currentDate.Text = DateTime.Now.ToLongDateString();
+        }
+
+        private void DispatcherTimer_Tick(object sender, object e)
+        {
+            currentTime.Text = DateTime.Now.ToShortTimeString();
         }
 
         public ObservableCollection<Labs> GetLabs(string connectionString)
@@ -62,6 +68,7 @@ namespace Lab_Schedule_Display
                                     lab.LabName = dr.GetString(0);
                                     lab.LabLocation = dr.GetString(1);
                                     lab.Level = "Level " + dr.GetInt32(2).ToString();
+                                    //lab.currentTime = timePicker1.Time;
                                     labs.Add(lab);
                                 }
                             }
@@ -77,7 +84,7 @@ namespace Lab_Schedule_Display
             return null;
         }
 
-    public ObservableCollection<Levels> GetLevels(string connectionString)
+        public ObservableCollection<Levels> GetLevels(string connectionString)
         {
             const string GetLevelsQuery = "SELECT DISTINCT Level FROM labs";
 
@@ -115,12 +122,12 @@ namespace Lab_Schedule_Display
 
         private void timePicker1_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
         {
-
-        }
-
-        private void timePicker1_TimeChanged_1(object sender, TimePickerValueChangedEventArgs e)
-        {
-
+            AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString);
+            if (AvailableLabsList.Items.Count == 0)
+            {
+                defaultPanel.Visibility = Visibility.Collapsed;
+                DropShadowPanel1.Visibility = Visibility.Visible;
+            }
         }
     }
 }

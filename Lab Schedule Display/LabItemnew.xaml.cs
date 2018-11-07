@@ -6,14 +6,13 @@ using System.Data.SqlClient;
 using Windows.UI;
 using Lab_Schedule_Display;
 using Windows.UI.Xaml.Media;
+using System;
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace Lab_Schedule_Display
 {
     public sealed partial class LabItemnew : UserControl
     {
-
-        public bool availabilityFlag;
 
         public string Level
         {
@@ -24,6 +23,16 @@ namespace Lab_Schedule_Display
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty levelLevel =
             DependencyProperty.Register("Level", typeof(string), typeof(LabItem), new PropertyMetadata(null));
+
+        public TimeSpan currentTime
+        {
+            get { return (TimeSpan)GetValue(currentTimeProperty); }
+            set { SetValue(currentTimeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for currentTime.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty currentTimeProperty =
+            DependencyProperty.Register("currentTime", typeof(TimeSpan), typeof(LabItemnew), new PropertyMetadata(0));
 
         public string LabLocation
         {
@@ -66,7 +75,8 @@ namespace Lab_Schedule_Display
                     {
                         using (SqlCommand cmd = conn.CreateCommand())
                         {
-                            cmd.CommandText = "SELECT * FROM Schedule WHERE EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
+                            //cmd.CommandText = "SELECT * FROM Schedule WHERE EndTime > CONVERT (time," + currentTime +") AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
+                            cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT(time, GETDATE()) AND EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
                             cmd.Parameters.AddWithValue("@labName", LabName);
                             using (SqlDataReader dr = cmd.ExecuteReader())
                             {
@@ -83,6 +93,7 @@ namespace Lab_Schedule_Display
                                     rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#663CE05A").Color);
                                 }
                             }
+                            //cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time," + currentTime + ") < CloseTime";
                             cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time, GETDATE()) < CloseTime";
                             using (SqlDataReader dr = cmd.ExecuteReader())
                             {
@@ -90,7 +101,7 @@ namespace Lab_Schedule_Display
                                 {
                                     //lab closed
                                     //#66C13F3F
-                                    rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#66C13F3F").Color);
+                                    rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#FFC13F3F").Color);
                                 }
                             }
                         }
