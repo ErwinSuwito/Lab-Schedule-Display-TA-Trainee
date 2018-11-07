@@ -38,7 +38,6 @@
                             </Grid>
                         </controls:DropShadowPanel>
                         <Grid x:Name="defaultPanel">
-                            <TimePicker VerticalAlignment="Top" x:Name="timePicker1" Margin="0,8,0,0" TimeChanged="timePicker1_TimeChanged"  Header="Select a time:"/>
                             <GridView VerticalAlignment="Top" x:Name="AvailableLabsList" Margin="0,78,0,0">
                                 <GridView.ItemTemplate>
                                     <DataTemplate x:DataType="datalayer:Labs">

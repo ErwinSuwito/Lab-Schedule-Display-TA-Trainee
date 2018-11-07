@@ -34,6 +34,7 @@ namespace Lab_Schedule_Display
         {
             this.InitializeComponent();
 
+
             //fetching data from db
             LabsList.ItemsSource = GetLevels((App.Current as App).ConnectionString);
             AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString, DateTime.Now.TimeOfDay);
