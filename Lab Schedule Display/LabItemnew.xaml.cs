@@ -44,6 +44,16 @@ namespace Lab_Schedule_Display
         public static readonly DependencyProperty LabNameProperty =
             DependencyProperty.Register("LabName", typeof(string), typeof(LabItem), new PropertyMetadata(0));
 
+        public string SelectedTime
+        {
+            get { return (string)GetValue(SelectedTimeProperty); }
+            set { SetValue(SelectedTimeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SelectedTime.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedTimeProperty =
+            DependencyProperty.Register("SelectedTime", typeof(string), typeof(LabItemnew), new PropertyMetadata(0));
+
         public LabItemnew()
         {
             this.InitializeComponent();
@@ -65,9 +75,8 @@ namespace Lab_Schedule_Display
                     {
                         using (SqlCommand cmd = conn.CreateCommand())
                         {
-                            cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT (time, GETDATE()) AND EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
+                            cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT (time,'" + SelectedTime + "') AND EndTime > CONVERT (time, '" + SelectedTime + "') AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
                             Debug.WriteLine(cmd.CommandText);
-                            //cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT(time, GETDATE()) AND EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
                             cmd.Parameters.AddWithValue("@labName", LabName);
                             using (SqlDataReader dr = cmd.ExecuteReader())
                             {
@@ -85,7 +94,7 @@ namespace Lab_Schedule_Display
                                 }
                             }
                             //cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time," + currentTime + ") < CloseTime";
-                            cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time, GETDATE()) < CloseTime";
+                            cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time,'" + SelectedTime +"') < CloseTime";
                             using (SqlDataReader dr = cmd.ExecuteReader())
                             {
                                 if (!dr.HasRows)
