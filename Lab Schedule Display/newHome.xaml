@@ -12,8 +12,8 @@
  
     <Grid>
         <RelativePanel>
-            <TextBlock x:Name="headerText" Text="Welcome!" Margin="60,108,0,0" FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}" />
-            <TextBlock x:Name="subheaderText" Margin="60,0,0,0" RelativePanel.Below="headerText" Style="{ThemeResource SubheaderTextBlockStyle}" Text="Browse labs by floor or swipe across the screen to see lab availability." />
+            <TextBlock FontSize="56" x:Name="headerText" Text="Welcome!" Margin="60,128,0,0" FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}" />
+            <TextBlock FontSize="40" x:Name="subheaderText" Margin="60,0,0,0" RelativePanel.Below="headerText" Style="{ThemeResource SubheaderTextBlockStyle}" Text="Browse labs by floor or swipe across the screen to see lab availability." />
             <Pivot RelativePanel.Below="subheaderText" Margin="52,12,52,0">
                 <PivotItem Header="Browse by Floor">
                     <GridView x:Name="LabsList" Margin="0,12,0,0">
@@ -52,8 +52,8 @@
             </Pivot>
         </RelativePanel>
 
-        <StackPanel Margin="0,86,52,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <TextBlock Text="13:00" x:Name="currentTime" FontWeight="SemiBold" TextAlignment="Right" Style="{ThemeResource SubheaderTextBlockStyle}"/>
+        <StackPanel Margin="0,108,52,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <TextBlock FontSize="40" Text="13:00" x:Name="currentTime" FontWeight="SemiBold" TextAlignment="Right" Style="{ThemeResource SubheaderTextBlockStyle}"/>
             <TextBlock Text="Tuesday, 7 November 2018" x:Name="currentDate" TextAlignment="Right" FontWeight="SemiBold" Style="{ThemeResource TitleTextBlockStyle}"/>
         </StackPanel>
     </Grid>

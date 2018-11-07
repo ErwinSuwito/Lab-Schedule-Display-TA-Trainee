@@ -13,24 +13,24 @@
         <Image x:Name="bgImage" Stretch="UniformToFill"/>
         <Grid Background="#88000000" x:Name="backgroundAcrylic"/>
         <RelativePanel x:Name="rootPanel">
-            <Button Click="Button_Click" Style="{ThemeResource ButtonRevealStyle}" Height="44" Width ="100" Margin="60,52,0,0">
+            <Button Click="Button_Click" Style="{ThemeResource ButtonRevealStyle}" Height="64" Width ="128" Margin="60,52,0,0">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <TextBlock Margin="0,5,0,0" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="&#xE72B;"/>
-                        <TextBlock Text="Back" Margin="8,-2,0,0" FontSize="20"/>
+                        <TextBlock Margin="0,5,0,0" FontSize="22" FontFamily="Segoe MDL2 Assets" Text="&#xE72B;"/>
+                        <TextBlock Text="Back" Margin="8,-2,0,0" FontSize="26"/>
                     </StackPanel>
                 </Button.Content>
             </Button>
 
-            <StackPanel x:Name="pageHeader" Margin="60,108,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock x:Name= "headerText" Text="Welcome!" FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}" />
+            <StackPanel x:Name="pageHeader" Margin="60,128,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock FontSize="56" x:Name= "headerText" Text="Welcome!" FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}" />
                 <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
                     <SymbolIcon x:Name="symbolIcon1" Margin="12,12,0,0 " Symbol="Accept" RenderTransformOrigin="0.5,0.5" >
                         <SymbolIcon.RenderTransform>
-                            <CompositeTransform ScaleX="1.6" ScaleY="1.6"/>
+                            <CompositeTransform ScaleX="2" ScaleY="2"/>
                         </SymbolIcon.RenderTransform>
                     </SymbolIcon>
-                    <TextBlock x:Name="labStatus" Margin="24,6,0,0" Text="This lab is available for use." Style="{ThemeResource SubheaderTextBlockStyle}"/>
+                    <TextBlock FontSize="40" x:Name="labStatus" Margin="24,6,0,0" Text="This lab is available for use." Style="{ThemeResource SubheaderTextBlockStyle}"/>
                 </StackPanel>
             </StackPanel>
 
