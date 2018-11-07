@@ -33,8 +33,12 @@ namespace Lab_Schedule_Display
         public newHome()
         {
             this.InitializeComponent();
+
+            //fetch data from db
             LabsList.ItemsSource = GetLevels((App.Current as App).ConnectionString);
-            timePicker1.Time = DateTime.Now.TimeOfDay;
+            AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString);
+
+            //setting up dispatchertimer to update time and update lab availability.
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Interval = new TimeSpan(0, 1, 0);
             dispatcherTimer.Tick += DispatcherTimer_Tick;
@@ -121,17 +125,6 @@ namespace Lab_Schedule_Display
                 Helpers.ShowMsgComplete(exSql.Message, "Unable to connect to the database.");
             }
             return null;
-        }
-
-        private void timePicker1_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
-        {
-            selectedTime = timePicker1.Time;
-            AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString);
-            if (AvailableLabsList.Items.Count == 0)
-            {
-                defaultPanel.Visibility = Visibility.Collapsed;
-                DropShadowPanel1.Visibility = Visibility.Visible;
-            }
         }
     }
 }
