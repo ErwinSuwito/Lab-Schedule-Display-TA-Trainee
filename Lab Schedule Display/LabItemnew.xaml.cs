@@ -7,6 +7,7 @@ using Windows.UI;
 using Lab_Schedule_Display;
 using Windows.UI.Xaml.Media;
 using System;
+using System.Diagnostics;
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace Lab_Schedule_Display
@@ -24,23 +25,12 @@ namespace Lab_Schedule_Display
         public static readonly DependencyProperty levelLevel =
             DependencyProperty.Register("Level", typeof(string), typeof(LabItem), new PropertyMetadata(null));
 
-        public TimeSpan currentTime
-        {
-            get { return (TimeSpan)GetValue(currentTimeProperty); }
-            set { SetValue(currentTimeProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for currentTime.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty currentTimeProperty =
-            DependencyProperty.Register("currentTime", typeof(TimeSpan), typeof(LabItemnew), new PropertyMetadata(0));
-
         public string LabLocation
         {
             get { return (string)GetValue(LocationProperty); }
             set { SetValue(LocationProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Location.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LocationProperty =
             DependencyProperty.Register("Location", typeof(string), typeof(LabItem), new PropertyMetadata(0));
 
@@ -75,8 +65,9 @@ namespace Lab_Schedule_Display
                     {
                         using (SqlCommand cmd = conn.CreateCommand())
                         {
-                            //cmd.CommandText = "SELECT * FROM Schedule WHERE EndTime > CONVERT (time," + currentTime +") AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
-                            cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT(time, GETDATE()) AND EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
+                            cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT (time, GETDATE()) AND EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
+                            Debug.WriteLine(cmd.CommandText);
+                            //cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT(time, GETDATE()) AND EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
                             cmd.Parameters.AddWithValue("@labName", LabName);
                             using (SqlDataReader dr = cmd.ExecuteReader())
                             {
@@ -110,7 +101,7 @@ namespace Lab_Schedule_Display
             }
             catch (SqlException sqlex)
             {
-                Helpers.ShowMsgComplete(sqlex.Message, "An error occurred.");
+                Helpers.ShowMsgComplete(sqlex.Message + sqlex.StackTrace + sqlex.LineNumber, "An error occurred.");
             }
         }
     }

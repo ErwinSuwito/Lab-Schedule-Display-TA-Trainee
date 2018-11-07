@@ -27,13 +27,16 @@ namespace Lab_Schedule_Display
     /// </summary>
     public sealed partial class newHome : Page
     {
+
+        public TimeSpan selectedTime;
+        
         public newHome()
         {
             this.InitializeComponent();
             LabsList.ItemsSource = GetLevels((App.Current as App).ConnectionString);
             timePicker1.Time = DateTime.Now.TimeOfDay;
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 30);
+            dispatcherTimer.Interval = new TimeSpan(0, 1, 0);
             dispatcherTimer.Tick += DispatcherTimer_Tick;
             dispatcherTimer.Start();
             currentTime.Text = DateTime.Now.ToShortTimeString();
@@ -43,6 +46,7 @@ namespace Lab_Schedule_Display
         private void DispatcherTimer_Tick(object sender, object e)
         {
             currentTime.Text = DateTime.Now.ToShortTimeString();
+            AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString);
         }
 
         public ObservableCollection<Labs> GetLabs(string connectionString)
@@ -68,7 +72,6 @@ namespace Lab_Schedule_Display
                                     lab.LabName = dr.GetString(0);
                                     lab.LabLocation = dr.GetString(1);
                                     lab.Level = "Level " + dr.GetInt32(2).ToString();
-                                    //lab.currentTime = timePicker1.Time;
                                     labs.Add(lab);
                                 }
                             }
@@ -122,6 +125,7 @@ namespace Lab_Schedule_Display
 
         private void timePicker1_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
         {
+            selectedTime = timePicker1.Time;
             AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString);
             if (AvailableLabsList.Items.Count == 0)
             {
