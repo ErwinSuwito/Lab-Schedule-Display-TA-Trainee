@@ -108,6 +108,7 @@
     <Compile Include="DataLayers\Labs.cs" />
     <Compile Include="DataLayers\Levels.cs" />
     <Compile Include="DataLayers\Schedules.cs" />
+    <Compile Include="DataLayers\SearchResults.cs" />
     <Compile Include="LabItemnew.xaml.cs">
       <DependentUpon>LabItemnew.xaml</DependentUpon>
     </Compile>
