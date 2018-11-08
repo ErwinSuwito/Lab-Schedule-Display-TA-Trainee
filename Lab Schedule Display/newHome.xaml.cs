@@ -60,6 +60,14 @@ namespace Lab_Schedule_Display
             AvailableLabsList.SelectedItem = null;
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            LabsList.SelectedItem = null;
+            AvailableLabsList.SelectedItem = null;
+        }
+
         private void DispatcherTimer_Tick(object sender, object e)
         {
             currentTime.Text = DateTime.Now.ToShortTimeString();
