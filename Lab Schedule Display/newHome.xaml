@@ -61,7 +61,7 @@
                                          Style="{ThemeResource CustomSearchBar}" Margin="0,0,160,0" FontSize="32"/>
                                 <Button x:Name="searchButton" Width="160" Height="60"
                                     Click="searchButton_Click"
-                                        Style="{ThemeResource ButtonRevealStyle}"
+                                        Style="{ThemeResource AccentButtonStyle}"
                                     HorizontalAlignment="Right">
                                     <Button.Content>
                                         <StackPanel Orientation="Horizontal">
@@ -82,7 +82,9 @@
                                             <StackPanel Padding="24,16,32,16">
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock Text="{Binding ModuleName}" Style="{ThemeResource TitleTextBlockStyle}" />
-                                                    <TextBlock Margin="4,0,0,0" Text="{Binding ModuleCode}" Style="{ThemeResource TitleTextBlockStyle}"/>
+                                                    <TextBlock Margin="4,0,0,0" Text="(" Style="{ThemeResource TitleTextBlockStyle}"/>
+                                                    <TextBlock  Text="{Binding ModuleCode}" Style="{ThemeResource TitleTextBlockStyle}"/>
+                                                    <TextBlock Text=")" Style="{ThemeResource TitleTextBlockStyle}"/>
                                                 </StackPanel>
                                                 <TextBlock Text="{Binding LecturerName}" Style="{ThemeResource TitleTextBlockStyle}"/>
                                                 <StackPanel Orientation="Horizontal">
