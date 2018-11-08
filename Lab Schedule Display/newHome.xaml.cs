@@ -221,12 +221,25 @@ namespace Lab_Schedule_Display
         private void searchButton_Click(object sender, RoutedEventArgs e)
         {
             searchResult.ItemsSource = GetSearchResults((App.Current as App).ConnectionString);
+            if (searchResult.Items.Count == 0)
+            {
+                DropShadowPanel3.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DropShadowPanel3.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void searchResult_ItemClick(object sender, ItemClickEventArgs e)
         {
             var clickedItem = (SearchResults)e.ClickedItem;
             this.Frame.Navigate(typeof(LabPage), clickedItem.LabName, new DrillInNavigationTransitionInfo());
+        }
+
+        private void resetButton_Click(object sender, RoutedEventArgs e)
+        {
+            timePicker1.Time = DateTime.Now.TimeOfDay;
         }
     }
 }
