@@ -223,6 +223,7 @@ namespace Lab_Schedule_Display
             searchResult.ItemsSource = GetSearchResults((App.Current as App).ConnectionString);
             if (searchResult.Items.Count == 0)
             {
+                DropShadowPanel3.Visibility = Visibility.Visible;
                 SearchResultsNotAvailable.Begin();
             }
             else
