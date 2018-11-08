@@ -35,7 +35,7 @@
             </StackPanel>
 
             <TextBlock Text="Today's schedule" Margin="60,24,0,0" x:Name="LabScheduleHeader" RelativePanel.Below="pageHeader" Style="{ThemeResource TitleTextBlockStyle}" />
-            <ListBox Background="Transparent" Width="520" Margin="60,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="LabScheduleView" RelativePanel.Below="LabScheduleHeader">
+            <ListBox ItemContainerStyle="{StaticResource ListBoxItemContainerStyle1}" Background="Transparent" Width="520" Margin="60,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="LabScheduleView" RelativePanel.Below="LabScheduleHeader">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Width="482" Background="#AA777777">
