@@ -4,10 +4,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Lab_Schedule_Display"
     xmlns:datalayer="using:Lab_Schedule_Display.DataLayers"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Loaded="Page_Loaded"
     Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+    <Page.Resources>
+        <Storyboard x:Name="showNoSchedule">
+            <DoubleAnimation Storyboard.TargetName="DropShadowPanel3"
+                             Storyboard.TargetProperty="Opacity" 
+                             From="0.0" To="1.0" Duration="0:0:0.2"/>
+        </Storyboard>
+    </Page.Resources>
 
     <Grid>
         <Image x:Name="bgImage" Stretch="UniformToFill"/>
@@ -57,6 +65,19 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            
+            <controls:DropShadowPanel x:Name="DropShadowPanel3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                      RelativePanel.Below="LabScheduleHeader" BlurRadius="20.0" ShadowOpacity="0.40" OffsetX="0" 
+                      Margin="60,12,0,0" OffsetY="8.0" Color="Black" Opacity="0">
+                <Grid x:Name="noSchedule" Height="320" Width="580" Background="#FF3A3A3A" VerticalAlignment="Top" HorizontalAlignment="Left" >
+                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                        <StackPanel Margin="40,44,24,24">
+                            <TextBlock Text=":)" FontSize="80"/>
+                            <TextBlock Text="No class is scheduled here." Style="{ThemeResource HeaderTextBlockStyle}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </controls:DropShadowPanel>
         </RelativePanel>
     </Grid>
 </Page>

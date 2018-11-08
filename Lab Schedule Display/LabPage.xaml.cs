@@ -187,9 +187,9 @@ namespace Lab_Schedule_Display
                 {
                     LabScheduleView.Visibility = Visibility.Collapsed;
                     LabScheduleHeader.Visibility = Visibility.Collapsed;
-                    labStatus.Text = "No classes are scheduled in this lab. This lab is available for use.";
                     symbolIcon1.Symbol = Symbol.Accept;
                     rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 33, 114, 33));
+                    showNoSchedule.Begin();
                 }
             }
 
