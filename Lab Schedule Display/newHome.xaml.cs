@@ -225,7 +225,10 @@ namespace Lab_Schedule_Display
             }
             else
             {
-                SearchResultsAvailable.Begin();
+                if (DropShadowPanel3.Opacity == 1)
+                {
+                    SearchResultsAvailable.Begin();
+                }
             }
         }
 

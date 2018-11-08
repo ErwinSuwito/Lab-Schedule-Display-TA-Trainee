@@ -40,6 +40,11 @@
 
     <Grid>
         <RelativePanel>
+            <RelativePanel.ChildrenTransitions>
+                <TransitionCollection>
+                    <ContentThemeTransition/>
+                </TransitionCollection>
+            </RelativePanel.ChildrenTransitions>
             <TextBlock FontSize="56" x:Name="headerText" Text="Welcome!" Margin="60,128,0,0" FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}" />
             <TextBlock FontSize="40" x:Name="subheaderText" Margin="60,0,0,0" RelativePanel.Below="headerText" Style="{ThemeResource SubheaderTextBlockStyle}" Text="Browse labs by floor or swipe across the screen to see lab availability." />
             <Pivot RelativePanel.Below="subheaderText" Margin="52,12,52,0">
@@ -54,7 +59,7 @@
                                         <TextBlock Text="Level" FontSize="24" />
                                     </StackPanel>
                                 </Grid>
-                               
+
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
@@ -103,6 +108,7 @@
                                     Click="searchButton_Click"
                                         Style="{ThemeResource AccentButtonStyle}"
                                     HorizontalAlignment="Right">
+                                    
                                     <Button.Content>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="&#xE71E;" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="24"/>
