@@ -49,6 +49,67 @@
                         </Grid>
                     </Grid>
                 </PivotItem>
+                <PivotItem Header="Where is my class?">
+                    <Grid>
+                        <controls:DropShadowPanel x:Name="DropShadowPanel2" HorizontalAlignment="Center" VerticalAlignment="Top"
+                                  BlurRadius="20.0" ShadowOpacity="0.40" OffsetX="0" OffsetY="8.0" Color="Black"
+                                              Margin="0,24,0,0">
+                            <Grid x:Name="searchBar" Height="60" Width="1000" 
+                              Background="#88BBBBBB"
+                              VerticalAlignment="Top" HorizontalAlignment="Left" >
+                                <TextBox x:Name="searchBox" PlaceholderText="Enter module name, code, or lecturer name..."
+                                         Style="{ThemeResource CustomSearchBar}" Margin="0,0,160,0" FontSize="32"/>
+                                <Button x:Name="searchButton" Width="160" Height="60"
+                                    Click="searchButton_Click"
+                                        Style="{ThemeResource ButtonRevealStyle}"
+                                    HorizontalAlignment="Right">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="&#xE71E;" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="24"/>
+                                            <TextBlock Text="Search" Margin="12,-4,0,0" VerticalAlignment="Center" FontSize="24"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
+                        </controls:DropShadowPanel>
+
+                        <GridView IsItemClickEnabled="True" ItemClick="searchResult_ItemClick" x:Name="searchResult" Background="Transparent" Width="1000" Margin="0,120,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <GridView.ItemTemplate>
+                                <DataTemplate x:DataType="datalayer:SearchResults">
+                                    <controls:DropShadowPanel BlurRadius="20.0" ShadowOpacity="0.40"
+                                                          OffsetX="0" OffsetY="8.0" Color="Black">
+                                        <Grid Background="#FF555555">
+                                            <StackPanel Padding="24,16,32,16">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding ModuleName}" Style="{ThemeResource TitleTextBlockStyle}" />
+                                                    <TextBlock Margin="4,0,0,0" Text="{Binding ModuleCode}" Style="{ThemeResource TitleTextBlockStyle}"/>
+                                                </StackPanel>
+                                                <TextBlock Text="{Binding LecturerName}" Style="{ThemeResource TitleTextBlockStyle}"/>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding LabName}" Style="{ThemeResource TitleTextBlockStyle}"/>
+                                                    <TextBlock Text=" -   " Style="{ThemeResource TitleTextBlockStyle}"/>
+                                                    <TextBlock Margin="6,0,0,0" Text="{Binding LabLocation}" Style="{ThemeResource TitleTextBlockStyle}"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding StartTime}" Style="{ThemeResource TitleTextBlockStyle}"/>
+                                                    <TextBlock Text="  -  " Style="{ThemeResource TitleTextBlockStyle}"/>
+                                                    <TextBlock Margin="6,0,0,0" Text="{Binding EndTime}" Style="{ThemeResource TitleTextBlockStyle}"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
+                                    </controls:DropShadowPanel>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+
+                            <GridView.ItemContainerStyle>
+                                <Style TargetType="FrameworkElement">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="Margin" Value="12,12,12,12" />
+                                </Style>
+                            </GridView.ItemContainerStyle>
+                        </GridView>
+                    </Grid>
+                </PivotItem>
             </Pivot>
         </RelativePanel>
 
