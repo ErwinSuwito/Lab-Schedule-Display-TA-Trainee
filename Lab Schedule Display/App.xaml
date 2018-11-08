@@ -179,7 +179,7 @@
                 <Setter Property="MinWidth" Value="{ThemeResource TextControlThemeMinWidth}" />
                 <Setter Property="MinHeight" Value="{ThemeResource TextControlThemeMinHeight}" />
                 <Setter Property="Foreground" Value="{ThemeResource TextControlForeground}" />
-                <Setter Property="Background" Value="{ThemeResource TextControlBackground}" />
+                <Setter Property="Background" Value="#FF555555" />
                 <Setter Property="BorderBrush" Value="{ThemeResource TextControlBorderBrush}" />
                 <Setter Property="SelectionHighlightColor" Value="{ThemeResource TextControlSelectionHighlightColor}" />
                 <Setter Property="BorderThickness" Value="0" />
@@ -292,7 +292,7 @@
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBorderBrushPointerOver}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="Background">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundPointerOver}" />
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="#FF383838" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderTextContentPresenter" Storyboard.TargetProperty="Foreground">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding PlaceholderForeground, RelativeSource={RelativeSource TemplatedParent}, TargetNullValue={ThemeResource TextControlPlaceholderForegroundPointerOver}}" />
