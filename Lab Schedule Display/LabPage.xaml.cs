@@ -150,6 +150,20 @@ namespace Lab_Schedule_Display
                                     schedule.ModuleName = dr.GetString(4);
                                     schedule.StartTime = dr.GetTimeSpan(5);
                                     schedule.EndTime = dr.GetTimeSpan(6);
+                                    
+                                    if (DateTime.Now.TimeOfDay < schedule.EndTime && DateTime.Now.TimeOfDay > schedule.StartTime)
+                                    {
+                                        schedule.myBrush = new SolidColorBrush(Colors.DarkGreen);
+                                    }
+                                    else if (DateTime.Now.TimeOfDay > schedule.EndTime)
+                                    {
+                                        schedule.myBrush = new SolidColorBrush(Colors.Red);
+                                    }
+                                    else if (DateTime.Now.TimeOfDay < schedule.StartTime && DateTime.Now.TimeOfDay < schedule.EndTime)
+                                    {
+                                        schedule.myBrush = new SolidColorBrush(Colors.LightGreen);
+                                    }
+
                                     schedules.Add(schedule);
                                 }
                             }

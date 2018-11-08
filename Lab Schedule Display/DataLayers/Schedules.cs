@@ -4,6 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
+using Windows.UI.Composition;
+using Windows.Media;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml;
 
 namespace Lab_Schedule_Display.DataLayers
 {
@@ -16,6 +21,7 @@ namespace Lab_Schedule_Display.DataLayers
         public string ModuleName { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
+        public SolidColorBrush myBrush {get; set;}
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyEventChanged(string propertyName)
