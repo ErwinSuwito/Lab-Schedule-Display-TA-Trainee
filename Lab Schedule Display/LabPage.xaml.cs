@@ -19,6 +19,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using Windows.UI;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Media.Animation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -119,7 +120,7 @@ namespace Lab_Schedule_Display
             }
             else
             {
-                this.Frame.Navigate(typeof(newHome));
+                this.Frame.Navigate(typeof(newHome), new DrillInNavigationTransitionInfo());
             }
         }
 

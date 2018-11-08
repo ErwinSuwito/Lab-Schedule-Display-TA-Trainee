@@ -8,6 +8,7 @@ using Lab_Schedule_Display;
 using Windows.UI.Xaml.Media;
 using System;
 using System.Diagnostics;
+using Windows.UI.Xaml.Media.Animation;
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace Lab_Schedule_Display
@@ -61,7 +62,7 @@ namespace Lab_Schedule_Display
 
         private void Rectangle_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            (Window.Current.Content as Frame).Navigate(typeof(LabPage), LabName);
+            (Window.Current.Content as Frame).Navigate(typeof(LabPage), LabName, new DrillInNavigationTransitionInfo());
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

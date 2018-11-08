@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
@@ -58,7 +59,7 @@ namespace Lab_Schedule_Display
 
         private void Rectangle_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            (Window.Current.Content as Frame).Navigate(typeof(LabPage), LabName);
+            (Window.Current.Content as Frame).Navigate(typeof(LabPage), LabName, new DrillInNavigationTransitionInfo());
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

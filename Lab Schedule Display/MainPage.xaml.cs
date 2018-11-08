@@ -17,6 +17,7 @@ using Lab_Schedule_Display.DataLayers;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using Windows.UI.Xaml.Media.Animation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -91,7 +92,7 @@ namespace Lab_Schedule_Display
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(newHome));
+                Frame.GoBack();
         }
     }
 }
