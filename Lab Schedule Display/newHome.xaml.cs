@@ -39,6 +39,9 @@ namespace Lab_Schedule_Display
             LabsList.ItemsSource = GetLevels((App.Current as App).ConnectionString);
             AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString, DateTime.Now.TimeOfDay);
 
+            //cache the page
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
+
             //setting up dispatchertimer to update time and refresh availability.
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Interval = new TimeSpan(0, 1, 0);
@@ -235,6 +238,7 @@ namespace Lab_Schedule_Display
         private void searchResult_ItemClick(object sender, ItemClickEventArgs e)
         {
             var clickedItem = (SearchResults)e.ClickedItem;
+            searchBox.Text = "";
             this.Frame.Navigate(typeof(LabPage), clickedItem.LabName, new DrillInNavigationTransitionInfo());
         }
 
@@ -246,6 +250,7 @@ namespace Lab_Schedule_Display
         private void LabsList_ItemClick(object sender, ItemClickEventArgs e)
         {
             var clickedItem = (Levels)e.ClickedItem;
+            LabsList.SelectedItem = null;
             this.Frame.Navigate(typeof(MainPage), clickedItem.Level, new DrillInNavigationTransitionInfo());
         }
 
