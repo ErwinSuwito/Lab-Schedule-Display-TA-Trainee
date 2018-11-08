@@ -36,6 +36,16 @@
                              Storyboard.TargetProperty="Opacity" 
                              From="0.0" To="1.0" Duration="0:0:0.2"/>
         </Storyboard>
+        <Storyboard x:Name="HideSearchResults">
+            <DoubleAnimation Storyboard.TargetName="searchResult"
+                             Storyboard.TargetProperty="Opacity" 
+                             From="1.0" To="0.0" Duration="0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Name="ShowSearchResults">
+            <DoubleAnimation Storyboard.TargetName="searchResult"
+                             Storyboard.TargetProperty="Opacity" 
+                             From="0.0" To="1.0" Duration="0:0:0.2"/>
+        </Storyboard>
     </Page.Resources>
 
     <Grid>
@@ -46,7 +56,8 @@
                 </TransitionCollection>
             </RelativePanel.ChildrenTransitions>
             <TextBlock FontSize="56" x:Name="headerText" Text="Welcome!" Margin="60,128,0,0" FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}" />
-            <TextBlock FontSize="40" x:Name="subheaderText" Margin="60,0,0,0" RelativePanel.Below="headerText" Style="{ThemeResource SubheaderTextBlockStyle}" Text="Browse labs by floor or swipe across the screen to see lab availability." />
+            <TextBlock Text="Swipe the screen to view lab availability or search for your class"
+                       FontSize="40" x:Name="subheaderText" Margin="60,0,0,0" RelativePanel.Below="headerText" Style="{ThemeResource SubheaderTextBlockStyle}"  />
             <Pivot RelativePanel.Below="subheaderText" Margin="52,12,52,0">
                 <PivotItem Header="Browse by Floor">
                     <GridView x:Name="LabsList" IsItemClickEnabled="True"

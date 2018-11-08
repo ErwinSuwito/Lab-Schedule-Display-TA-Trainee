@@ -251,6 +251,8 @@ namespace Lab_Schedule_Display
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            searchResult.ItemsSource = null;
+
             if (DropShadowPanel3.Opacity == 1)
             {
                 SearchResultsAvailable.Begin();
