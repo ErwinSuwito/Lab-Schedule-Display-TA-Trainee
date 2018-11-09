@@ -50,11 +50,6 @@
 
     <Grid>
         <RelativePanel>
-            <RelativePanel.ChildrenTransitions>
-                <TransitionCollection>
-                    <ContentThemeTransition/>
-                </TransitionCollection>
-            </RelativePanel.ChildrenTransitions>
             <TextBlock FontSize="56" x:Name="headerText" Text="Welcome!" Margin="60,128,0,0" FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}" />
             <TextBlock Text="Swipe the screen to view lab availability or search for your class"
                        FontSize="40" x:Name="subheaderText" Margin="60,0,0,0" RelativePanel.Below="headerText" Style="{ThemeResource SubheaderTextBlockStyle}"  />

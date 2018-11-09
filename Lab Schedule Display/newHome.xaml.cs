@@ -88,7 +88,6 @@ namespace Lab_Schedule_Display
                                     var lab = new Labs();
                                     lab.LabName = dr.GetString(0);
                                     lab.LabLocation = dr.GetString(1);
-                                    //string timePickerTime = timePicker1.Time.ToString();
                                     lab.SelectedTime = timePicker1.Time.ToString();
                                     lab.Level = "Level " + dr.GetInt32(2).ToString();
                                     labs.Add(lab);
