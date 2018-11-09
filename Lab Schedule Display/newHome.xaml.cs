@@ -212,7 +212,7 @@ namespace Lab_Schedule_Display
             {
                 NoLabsAvailable.Begin();
             }
-            else
+            else if (DropShadowPanel1.Opacity == 1)
             {
                 LabsAvailable.Begin();
             }
