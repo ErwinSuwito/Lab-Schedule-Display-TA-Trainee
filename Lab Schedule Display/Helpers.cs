@@ -35,21 +35,21 @@ namespace Lab_Schedule_Display
             return HasInternetAccess;
         }
 
-        static public bool ConnectionTest { get { return CheckDbConnection(); } }
+        static public bool ConnectionTest { get { return CheckDbConnection((App.Current as App).connectionString); } }
 
-        private static bool CheckDbConnection()
+        private static bool CheckDbConnection(string connectionString)
         {
-            using (var connectTest = new SqlConnection((App.Current as App).ConnectionString))
+            using (var connectTest = new SqlConnection(connectionString))
             {
                 try
                 {
                     connectTest.Open();
+                    return true;
                 }
                 catch (SqlException)
                 {
                     return false;
                 }
-                return true;
             }
         }
 

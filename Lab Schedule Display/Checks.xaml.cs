@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -33,19 +34,23 @@ namespace Lab_Schedule_Display
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            base.OnNavigatedTo(e);
-
-            if (Helpers.ConnectionTest)
+            if (!Helpers.HasInternetAccess)
             {
-                this.Frame.Navigate(typeof(SelectFloorPage));
+                loadProgressText.Text = "No network detected. Trying to connect to the database...";
+            }
+
+            bool connectTest = Helpers.ConnectionTest;
+
+            if (connectTest == true)
+            {
+                this.Frame.Navigate(typeof(newHome),"" , new DrillInNavigationTransitionInfo());
             }
             else
             {
-                progRing1.IsActive = false;
-                progressPanel.Visibility = Visibility.Collapsed;
                 DropShadowPanel1.Visibility = Visibility.Visible;
+                progressPanel.Visibility = Visibility.Collapsed;
             }
         }
     }
