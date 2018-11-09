@@ -208,13 +208,11 @@ namespace Lab_Schedule_Display
             AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString, timePicker1.Time);
             if (AvailableLabsList.Items.Count == 0)
             {
-                AvailableLabsList.Visibility = Visibility.Collapsed;
-                DropShadowPanel1.Visibility = Visibility.Visible;
+                NoLabsAvailable.Begin();
             }
             else
             {
-                AvailableLabsList.Visibility = Visibility.Visible;
-                DropShadowPanel1.Visibility = Visibility.Collapsed;
+                LabsAvailable.Begin();
             }
         }
 
