@@ -26,6 +26,16 @@
                              Storyboard.TargetProperty="Opacity" 
                              From="0.0" To="1.0" Duration="0:0:0.2"/>
         </Storyboard>
+        <Storyboard x:Name="SearchResultsAvailable">
+            <DoubleAnimation Storyboard.TargetName="DropShadowPanel3"
+                             Storyboard.TargetProperty="Opacity" 
+                             From="1.0" To="0.0" Duration="0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Name="SearchResultsNotAvailable">
+            <DoubleAnimation Storyboard.TargetName="DropShadowPanel3"
+                             Storyboard.TargetProperty="Opacity" 
+                             From="0.0" To="1.0" Duration="0:0:0.2"/>
+        </Storyboard>
     </Page.Resources>
 
     <Grid>
@@ -88,7 +98,7 @@
                               Background="#88BBBBBB"
                               VerticalAlignment="Top" HorizontalAlignment="Left" >
                                 <TextBox x:Name="searchBox" PlaceholderText="Enter module name, code, or lecturer name..."
-                                         Style="{ThemeResource CustomSearchBar}" Margin="0,0,160,0" FontSize="32"/>
+                                         Style="{ThemeResource CustomSearchBar}" Margin="0,0,160,0" TextChanged="searchBox_TextChanged" FontSize="32"/>
                                 <Button x:Name="searchButton" Width="160" Height="60"
                                     Click="searchButton_Click"
                                         Style="{ThemeResource AccentButtonStyle}"
@@ -142,7 +152,7 @@
                         </GridView>
 
                         <controls:DropShadowPanel x:Name="DropShadowPanel3" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                  BlurRadius="20.0" ShadowOpacity="0.40" OffsetX="0" OffsetY="8.0" Color="Black" Visibility="Collapsed">
+                                  BlurRadius="20.0" ShadowOpacity="0.40" OffsetX="0" OffsetY="8.0" Color="Black" Opacity="0">
                             <Grid x:Name="searchError" Height="320" Width="580" Background="#FF3A3A3A" VerticalAlignment="Top" HorizontalAlignment="Left" >
                                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                     <StackPanel Margin="40,44,24,24">

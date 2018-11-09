@@ -221,11 +221,11 @@ namespace Lab_Schedule_Display
             searchResult.ItemsSource = GetSearchResults((App.Current as App).ConnectionString);
             if (searchResult.Items.Count == 0)
             {
-                DropShadowPanel3.Visibility = Visibility.Visible;
+                SearchResultsNotAvailable.Begin();
             }
             else
             {
-                DropShadowPanel3.Visibility = Visibility.Collapsed;
+                SearchResultsAvailable.Begin();
             }
         }
 
@@ -244,6 +244,14 @@ namespace Lab_Schedule_Display
         {
             var clickedItem = (Levels)e.ClickedItem;
             this.Frame.Navigate(typeof(MainPage), clickedItem.Level, new DrillInNavigationTransitionInfo());
+        }
+
+        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (DropShadowPanel3.Opacity == 1)
+            {
+                SearchResultsAvailable.Begin();
+            }
         }
     }
 }
