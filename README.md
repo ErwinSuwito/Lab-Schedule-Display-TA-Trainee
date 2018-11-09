@@ -6,7 +6,7 @@ This repository stores the project files for the lab scheduling application for 
 Before you contribute to this project, you'll need to have these things done:
 1. Install Visual Studio 2017 and select the Universal Windows Platform development workload, Git for Windows and GitHub extension for Visual Studio
 2. Install SQL Server with default settings, do not change the instance name. Make sure its MSSQLSERVER.
-3. Execute the queries. You can get them [here]
+3. Execute the queries. You can get them [here](https://cloudmails-my.sharepoint.com/:u:/g/personal/tp045000_mail_apu_edu_my/EbWKueHYQv1KkrjzPR0ED2wBwuWtmnVeIr2piwi3uIg59A?e=1d0wUp)
 4. Click Clone or Download (the green button above)
 5. Click open in Visual Studio
 6. Start contributing!
