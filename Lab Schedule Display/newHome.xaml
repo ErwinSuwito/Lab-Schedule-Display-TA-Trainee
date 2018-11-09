@@ -16,10 +16,17 @@
             <TextBlock FontSize="40" x:Name="subheaderText" Margin="60,0,0,0" RelativePanel.Below="headerText" Style="{ThemeResource SubheaderTextBlockStyle}" Text="Browse labs by floor or swipe across the screen to see lab availability." />
             <Pivot RelativePanel.Below="subheaderText" Margin="52,12,52,0">
                 <PivotItem Header="Browse by Floor">
-                    <GridView x:Name="LabsList" Margin="0,12,0,0">
+                    <GridView x:Name="LabsList" IsItemClickEnabled="True"
+                              ItemClick="LabsList_ItemClick" Margin="0,12,0,0">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="datalayer:Levels">
-                                <local:LevelItem Level="{x:Bind Level}" />
+                                <Grid Background="#99777777" Height="192" Width="332">
+                                    <StackPanel VerticalAlignment="Bottom" Margin="16,0,0,16">
+                                        <TextBlock x:Name="level" Text="{Binding Level}" FontWeight="Bold" FontSize="60" />
+                                        <TextBlock Text="Level" FontSize="24" />
+                                    </StackPanel>
+                                </Grid>
+                               
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>

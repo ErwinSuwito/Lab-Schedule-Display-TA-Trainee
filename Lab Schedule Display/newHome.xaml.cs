@@ -241,5 +241,11 @@ namespace Lab_Schedule_Display
         {
             timePicker1.Time = DateTime.Now.TimeOfDay;
         }
+
+        private void LabsList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var clickedItem = (Levels)e.ClickedItem;
+            this.Frame.Navigate(typeof(MainPage), clickedItem.Level, new DrillInNavigationTransitionInfo());
+        }
     }
 }
