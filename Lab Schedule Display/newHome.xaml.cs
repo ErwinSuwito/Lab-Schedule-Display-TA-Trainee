@@ -35,6 +35,9 @@ namespace Lab_Schedule_Display
         {
             this.InitializeComponent();
 
+            //set timePicker
+            timePicker1.Time = DateTime.Now.TimeOfDay;
+
             //fetching data from db
             LabsList.ItemsSource = GetLevels((App.Current as App).ConnectionString);
             AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString, DateTime.Now.TimeOfDay);
@@ -270,6 +273,11 @@ namespace Lab_Schedule_Display
             {
                 SearchResultsAvailable.Begin();
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
