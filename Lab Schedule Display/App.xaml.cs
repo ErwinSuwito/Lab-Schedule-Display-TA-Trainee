@@ -38,13 +38,28 @@ namespace Lab_Schedule_Display
             this.UnhandledException += App_UnhandledException;
         }
 
+        public int UnhandledExceptionTimes;
+        public errorParameters parameters = new errorParameters();
+
         private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
         {
+            
+            if (UnhandledExceptionTimes <= 10)
+            {
+                parameters.ErrorMessage = e.Exception.Message;
+                parameters.StackTrace = e.Exception.StackTrace;
+                parameters.AutoNavigate = true;
+            }
+            else
+            {
+                parameters.ErrorMessage = e.Exception.Message;
+                parameters.StackTrace = e.Exception.StackTrace;
+                parameters.AutoNavigate = false;
+            }
+
             Frame rootFrame = Window.Current.Content as Frame;
-            var parameters = new errorParameters();
-            parameters.ErrorMessage = e.Exception.Message;
-            parameters.StackTrace = e.Exception.StackTrace;
             rootFrame.Navigate(typeof(UnhandledExceptionPage), parameters);
+            UnhandledExceptionTimes++;
             e.Handled = true;
         }
 
@@ -140,6 +155,8 @@ namespace Lab_Schedule_Display
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
+            parameters.AutoNavigate = true;
+            UnhandledExceptionTimes = 0;
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();

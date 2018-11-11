@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -27,6 +28,7 @@ namespace Lab_Schedule_Display
             this.InitializeComponent();
         }
 
+        bool AutoRestartMode;
         string errorMessage;
         string stackTrace;
 
@@ -37,6 +39,7 @@ namespace Lab_Schedule_Display
             var parameters = (errorParameters)e.Parameter;
             errorMessage = parameters.ErrorMessage;
             stackTrace = parameters.StackTrace;
+            AutoRestartMode = parameters.AutoNavigate;
         }
 
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
@@ -44,9 +47,17 @@ namespace Lab_Schedule_Display
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             errorMessageText.Text = "Error: " + errorMessage;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
-            dispatcherTimer.Tick += DispatcherTimer_Tick;
-            dispatcherTimer.Start();
+            if (AutoRestartMode == true)
+            {
+                dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
+                dispatcherTimer.Tick += DispatcherTimer_Tick;
+                dispatcherTimer.Start();
+            }
+            else
+            {
+                titleText.Text = "The app has encountered more than ten errors this session. Please contact TA to take action.";
+            }
+           
         }
 
         private void DispatcherTimer_Tick(object sender, object e)
@@ -57,7 +68,7 @@ namespace Lab_Schedule_Display
 
         private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Helpers.ShowMsgComplete(errorMessage, stackTrace);
+            Debug.WriteLine(errorMessage, stackTrace);
         }
     }
 }

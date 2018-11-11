@@ -11,7 +11,7 @@
     <Grid Tapped="Grid_Tapped">
         <StackPanel Margin="160,-160,280,0" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock Text=":(" FontSize="120" Style="{ThemeResource HeaderTextBlockStyle}"/>
-            <TextBlock Text="The app encountered a problem and needs to restart. We're collecting some info, then we'll restart for you." Style="{ThemeResource HeaderTextBlockStyle}" />
+            <TextBlock x:Name="titleText" Text="The app encountered a problem and needs to restart. We'll automatically restart in approximately ten seconds." Style="{ThemeResource HeaderTextBlockStyle}" />
             <TextBlock x:Name="errorMessageText" FontSize="28" Text="Error Message" Margin="0,120,0,0" Style="{ThemeResource TitleTextBlockStyle}" />
             <TextBlock FontSize="28" Text="Tap anywhere to see stack trace." Margin="0,4,0,0" Style="{ThemeResource TitleTextBlockStyle}" />
         </StackPanel>
