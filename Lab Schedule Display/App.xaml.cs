@@ -35,6 +35,17 @@ namespace Lab_Schedule_Display
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.UnhandledException += App_UnhandledException;
+        }
+
+        private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            var parameters = new errorParameters();
+            parameters.ErrorMessage = e.Exception.Message;
+            parameters.StackTrace = e.Exception.StackTrace;
+            rootFrame.Navigate(typeof(UnhandledExceptionPage), parameters);
+            e.Handled = true;
         }
 
         static Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;

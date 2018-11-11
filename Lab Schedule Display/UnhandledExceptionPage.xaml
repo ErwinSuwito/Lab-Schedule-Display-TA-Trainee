@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="Lab_Schedule_Display.UnhandledExceptionPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Lab_Schedule_Display"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="Page_Loaded"
+    Background="Green">
+
+    <Grid Tapped="Grid_Tapped">
+        <StackPanel Margin="160,-160,280,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBlock Text=":(" FontSize="120" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="The app encountered a problem and needs to restart. We're collecting some info, then we'll restart for you." Style="{ThemeResource HeaderTextBlockStyle}" />
+            <TextBlock x:Name="errorMessageText" FontSize="28" Text="Error Message" Margin="0,120,0,0" Style="{ThemeResource TitleTextBlockStyle}" />
+            <TextBlock FontSize="28" Text="Tap anywhere to see stack trace." Margin="0,4,0,0" Style="{ThemeResource TitleTextBlockStyle}" />
+        </StackPanel>
+    </Grid>
+</Page>

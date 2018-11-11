@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="Lab_Schedule_Display.MapPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Lab_Schedule_Display"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+    <Page.Transitions>
+        <TransitionCollection>
+            <EdgeUIThemeTransition Edge="Right" />
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid>
+        <RelativePanel x:Name="rootPanel">
+            <Button Click="Button_Click" HorizontalContentAlignment="Left" Style="{ThemeResource ButtonRevealStyle}" Height="64" Width ="272" Margin="60,52,0,0">
+                <Button.Content>
+                    <StackPanel Margin="12,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Margin="0,5,0,0" FontSize="22" FontFamily="Segoe MDL2 Assets" Text="&#xE72B;"/>
+                        <TextBlock Text="Back" Margin="8,-3,0,0" FontSize="26"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <StackPanel x:Name="pageHeader" Margin="60,128,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock FontSize="56" x:Name="headerText" Text="Lab Location" FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}" />
+                <TextBlock FontSize="40" Text="TL04-01" Style="{ThemeResource SubheaderTextBlockStyle}" />
+            </StackPanel>
+            <Image x:Name="mapImage" RelativePanel.Below="pageHeader"/>
+        </RelativePanel>
+    </Grid>
+</Page>

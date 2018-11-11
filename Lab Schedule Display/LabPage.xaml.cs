@@ -198,5 +198,10 @@ namespace Lab_Schedule_Display
                 bgImage.Source = new BitmapImage(new Uri(this.BaseUri, "/LabAssets/TL04-04.jpeg"));
             }
         }
+
+        private void MapButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MapPage), "");
+        }
     }
 }

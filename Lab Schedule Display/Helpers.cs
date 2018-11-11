@@ -41,15 +41,15 @@ namespace Lab_Schedule_Display
         {
             using (var connectTest = new SqlConnection(connectionString))
             {
-                try
-                {
+                //try
+                //{
                     connectTest.Open();
                     return true;
-                }
-                catch (SqlException)
-                {
+                //}
+                //catch (SqlException)
+                //{
                     return false;
-                }
+                //}
             }
         }
 
