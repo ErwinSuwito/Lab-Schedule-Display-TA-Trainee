@@ -53,5 +53,10 @@ namespace Lab_Schedule_Display
                 progressPanel.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Checks));
+        }
     }
 }

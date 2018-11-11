@@ -21,11 +21,11 @@
 
         <controls:DropShadowPanel x:Name="DropShadowPanel1" HorizontalAlignment="Center" VerticalAlignment="Center"
                                   BlurRadius="20.0" ShadowOpacity="0.40"
-                          OffsetX="0" OffsetY="8.0" Color="Black" Visibility="Collapsed">
+                          OffsetX="0" OffsetY="8.0" Color="Black" Visibility="Visible">
             <Grid x:Name="dbError" Height="320" Width="580" Background="#FF3A3A3A"
                   HorizontalAlignment="Center" VerticalAlignment="Center" >
                 <StackPanel VerticalAlignment="Center">
-                    <StackPanel Margin="0,44,24,24">
+                    <StackPanel Margin="0,0,24,24">
                         <SymbolIcon x:Name="symbolIcon1" Margin="0,12,0,0 " Symbol="Cancel" RenderTransformOrigin="0.5,0.5" >
                             <SymbolIcon.RenderTransform>
                                 <CompositeTransform ScaleX="3.6" ScaleY="3.6"/>
@@ -34,6 +34,7 @@
                         <TextBlock x:Name="Status" TextAlignment="Center" Margin="0,36,0,0" Text="Unable to connect to database" Style="{ThemeResource HeaderTextBlockStyle}"/>
                     </StackPanel>
                 </StackPanel>
+                <Button Click="Button_Click" Content="Retry" FontSize="20" Height="52" Width="580" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
             </Grid>
         </controls:DropShadowPanel>
     </Grid>
