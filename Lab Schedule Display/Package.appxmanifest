@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="29437ErwinSuwitoandojo.LabScheduleDisplay" Publisher="CN=EB87CADD-5C4D-4A02-8C6B-C25705F9A969" Version="0.8.0.0" />
+  <Identity Name="29437ErwinSuwitoandojo.LabScheduleDisplay" Publisher="CN=EB87CADD-5C4D-4A02-8C6B-C25705F9A969" Version="1.1.0.0" />
   <mp:PhoneIdentity PhoneProductId="7318b12f-2006-4054-8337-d2165a8a8744" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Lab Schedule Display</DisplayName>
