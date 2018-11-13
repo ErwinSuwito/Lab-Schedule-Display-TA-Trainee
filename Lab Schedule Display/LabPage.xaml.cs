@@ -201,7 +201,7 @@ namespace Lab_Schedule_Display
 
         private void MapButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MapPage), "");
+            Frame.Navigate(typeof(MapPage), headerText.Text);
         }
     }
 }
