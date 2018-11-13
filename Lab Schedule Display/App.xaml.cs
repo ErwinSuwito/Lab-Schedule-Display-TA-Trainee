@@ -63,8 +63,6 @@ namespace Lab_Schedule_Display
             e.Handled = true;
         }
 
-        static Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-
         public string connectionString = @"Data Source=.; Initial Catalog=LabSchedule; Integrated Security=SSPI; ";
         public string ConnectionString { get => connectionString; set => connectionString = value; }
 
