@@ -178,9 +178,9 @@ namespace Lab_Schedule_Display
                                     result.LabLocation = dr.GetString(9);
                                     result.LabName = dr.GetString(1);
                                     result.UseDate = dr.GetDateTime(5);
-                                    result.LecturerName = dr.GetString(14);
+                                    result.LecturerName = dr.GetString(13);
                                     result.ModuleCode = dr.GetString(2);
-                                    result.ModuleName = dr.GetString(16);
+                                    result.ModuleName = dr.GetString(15);
                                     result.StartTime = dr.GetTimeSpan(6);
                                     results.Add(result);
                                 }
