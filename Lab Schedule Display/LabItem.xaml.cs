@@ -64,16 +64,13 @@ namespace Lab_Schedule_Display
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (labname.Text == "TL04-04")
-            {
-                bgPicture.Source = new BitmapImage(new Uri(this.BaseUri, "/LabAssets/TL04-04.jpeg"));
-                bgFilter.Visibility = Visibility.Visible;
-            }
-            else if(labname.Text == "TL04-06")
-            {
-                bgPicture.Source = new BitmapImage(new Uri(this.BaseUri, "/LabAssets/TL04-06.jpeg"));
-                bgFilter.Visibility = Visibility.Visible;
-            }
+            bgPicture.Source = new BitmapImage(new Uri(this.BaseUri, "/LabAssets/" + labname.Text +".jpeg"));
+            bgFilter.Visibility = Visibility.Visible;
+        }
+
+        private void bgPicture_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            bgFilter.Visibility = Visibility.Collapsed;
         }
     }
 }
