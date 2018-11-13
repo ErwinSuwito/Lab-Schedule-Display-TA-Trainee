@@ -47,5 +47,10 @@ namespace Lab_Schedule_Display
         {
             mapImage.Source = new BitmapImage(new Uri(this.BaseUri, "/MapAssets/" + whichLab +".jpeg"));
         }
+
+        private void mapImage_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            ImageError.Begin();
+        }
     }
 }
