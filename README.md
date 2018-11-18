@@ -2,6 +2,13 @@
 ## About
 This repository stores the project files for the lab scheduling application for TA Trainee Group 3. 
 
+## Reporting for errrors
+1. Go to the Issues tab.
+2. If the error you encountered is already reported, open that issue and describe the issue there.
+3. If the error you encountered is not reported. Open a new issue. To create a issue: https://help.github.com/articles/creating-an-issue/
+
+You may need to create a github account to open an issue.
+
 ## Contributing
 Before you contribute to this project, you'll need to have these things done:
 1. Install Visual Studio 2017 and select the Universal Windows Platform development workload, Git for Windows and GitHub extension for Visual Studio
