@@ -68,7 +68,7 @@ namespace Lab_Schedule_Display
 
         private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Debug.WriteLine(errorMessage, stackTrace);
+            Helpers.ShowMsgComplete(errorMessage + stackTrace, "Exception Handled");
         }
     }
 }

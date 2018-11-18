@@ -38,7 +38,7 @@ namespace Lab_Schedule_Display
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            //this.UnhandledException += App_UnhandledException;
+            this.UnhandledException += App_UnhandledException;
             AppCenter.Start("31880955-b991-41ac-8f3e-5bc6aec96185", typeof(Analytics));
             AppCenter.Start("31880955-b991-41ac-8f3e-5bc6aec96185", typeof(Crashes));
         }
@@ -61,6 +61,9 @@ namespace Lab_Schedule_Display
                 parameters.StackTrace = e.Exception.StackTrace;
                 parameters.AutoNavigate = false;
             }
+
+            //Just in case exception is not reported during testing.
+            Analytics.TrackEvent("Exception occurred");
 
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(UnhandledExceptionPage), parameters);
