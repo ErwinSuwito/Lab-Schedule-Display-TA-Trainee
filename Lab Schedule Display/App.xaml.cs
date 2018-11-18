@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace Lab_Schedule_Display
 {
@@ -37,8 +38,9 @@ namespace Lab_Schedule_Display
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            this.UnhandledException += App_UnhandledException;
+            //this.UnhandledException += App_UnhandledException;
             AppCenter.Start("31880955-b991-41ac-8f3e-5bc6aec96185", typeof(Analytics));
+            AppCenter.Start("31880955-b991-41ac-8f3e-5bc6aec96185", typeof(Crashes));
         }
 
         public int UnhandledExceptionTimes;
