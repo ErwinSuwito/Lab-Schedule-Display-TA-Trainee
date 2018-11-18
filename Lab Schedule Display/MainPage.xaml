@@ -12,14 +12,25 @@
 
     <Grid>
         <RelativePanel x:Name="rootPanel">
-            <Button Click="Button_Click" Style="{ThemeResource ButtonRevealStyle}" Height="64" Width ="128" Margin="60,52,0,0">
-                <Button.Content>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <TextBlock Margin="0,5,0,0" FontSize="22" FontFamily="Segoe MDL2 Assets" Text="&#xE72B;"/>
-                        <TextBlock Text="Back" Margin="8,-2,0,0" FontSize="26"/>
-                    </StackPanel>
-                </Button.Content>
-            </Button>
+            <StackPanel Orientation="Horizontal">
+                <Button Click="Button_Click" Style="{ThemeResource ButtonRevealStyle}" Height="64" Width ="128" Margin="60,52,0,0">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Margin="0,5,0,0" FontSize="22" FontFamily="Segoe MDL2 Assets" Text="&#xE72B;"/>
+                            <TextBlock Text="Back" Margin="8,-2,0,0" FontSize="26"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Click="MapButton_Click" x:Name="MapButton" Style="{ThemeResource ButtonRevealStyle}" Height="64" Width ="128" Margin="16,52,0,0">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Margin="0,5,0,0" FontSize="22" FontFamily="Segoe MDL2 Assets" Text="&#xE707;"/>
+                            <TextBlock Text="Map" Margin="8,-3,0,0" FontSize="26"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            
             <StackPanel x:Name="pageHeader" Margin="60,128,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <TextBlock FontSize="56" x:Name="headerText" Text="Welcome!" FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}" />
                 <TextBlock FontSize="40" Text="Select a lab to view its schedule" Style="{ThemeResource SubheaderTextBlockStyle}" />

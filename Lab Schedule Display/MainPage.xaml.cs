@@ -94,5 +94,10 @@ namespace Lab_Schedule_Display
         {
                 Frame.GoBack();
         }
+
+        private void MapButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MapPage), headerText.Text);
+        }
     }
 }

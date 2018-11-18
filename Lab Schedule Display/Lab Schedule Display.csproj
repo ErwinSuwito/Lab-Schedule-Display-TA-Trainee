@@ -151,6 +151,8 @@
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="LabAssets\TL04-04.jpeg" />
     <Content Include="LabAssets\TL04-06.jpeg" />
+    <Content Include="MapAssets\Level 6.jpg" />
+    <Content Include="MapAssets\Level 4.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -223,9 +225,7 @@
       <Version>5.0.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MapAssets\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
