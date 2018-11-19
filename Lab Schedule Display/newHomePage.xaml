@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" RequestedTheme="Light"
+    mc:Ignorable="d" RequestedTheme="Light" Loaded="Page_Loaded"
     Background="White">
 
     <Grid>
@@ -24,7 +24,8 @@
                 <TextBlock x:Name="dateText" TextAlignment="Center" FontWeight="SemiBold" Style="{ThemeResource SubheaderTextBlockStyle}" />
             </StackPanel>
 
-            <ListView ItemClick="ListView_ItemClick" IsItemClickEnabled="True"
+            <ListView x:Name="navigationList" ItemClick="ListView_ItemClick"
+                      IsItemClickEnabled="True"
                       HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid Tag="Level4" MinWidth="240" MinHeight="120">
                     <StackPanel VerticalAlignment="Center">

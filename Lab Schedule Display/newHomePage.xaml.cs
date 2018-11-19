@@ -35,7 +35,7 @@ namespace Lab_Schedule_Display
 
             if (clickedItem.Tag.ToString() == "Search")
             {
-                rootFrame.Navigate(typeof(SearchPage), new DrillInNavigationTransitionInfo());
+                rootFrame.Navigate(typeof(SearchPage), "", new DrillInNavigationTransitionInfo());
             }
             else if (clickedItem.Tag.ToString() == "Level4")
             {
@@ -45,6 +45,12 @@ namespace Lab_Schedule_Display
             {
                 rootFrame.Navigate(typeof(MainPage), 6, new DrillInNavigationTransitionInfo());
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            navigationList.SelectedIndex = 0;
+            rootFrame.Navigate(typeof(MainPage), 4, new DrillInNavigationTransitionInfo());
         }
     }
 }
