@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -22,6 +23,7 @@ namespace Lab_Schedule_Display
     /// </summary>
     public sealed partial class newHomePage : Page
     {
+
         public newHomePage()
         {
             this.InitializeComponent();
@@ -33,7 +35,15 @@ namespace Lab_Schedule_Display
 
             if (clickedItem.Tag.ToString() == "Search")
             {
-                rootFrame.Navigate(typeof(SearchPage));
+                rootFrame.Navigate(typeof(SearchPage), new DrillInNavigationTransitionInfo());
+            }
+            else if (clickedItem.Tag.ToString() == "Level4")
+            {
+                rootFrame.Navigate(typeof(MainPage), 4, new DrillInNavigationTransitionInfo());
+            }
+            else if (clickedItem.Tag.ToString() == "Level6")
+            {
+                rootFrame.Navigate(typeof(MainPage), 6, new DrillInNavigationTransitionInfo());
             }
         }
     }

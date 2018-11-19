@@ -67,29 +67,38 @@
             </controls:DropShadowPanel>
 
             <TextBlock Text="Today's schedule" Margin="60,24,0,0" x:Name="LabScheduleHeader" RelativePanel.Below="pageHeader" Style="{ThemeResource TitleTextBlockStyle}" />
-            <ListBox ItemContainerStyle="{StaticResource ListBoxItemContainerStyle1}" Background="Transparent" 
-                     Width="520" Margin="60,8,0,52" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="LabScheduleView" RelativePanel.Below="LabScheduleHeader">
-                <ListBox.ItemTemplate>
+            <ListView Background="Transparent" Width="Auto" Margin="60,8,0,52" 
+                     HorizontalAlignment="Left" VerticalAlignment="Top" 
+                     x:Name="LabScheduleView" RelativePanel.Below="LabScheduleHeader">
+                <ListView.HeaderTemplate>
                     <DataTemplate>
-                        <Grid Width="482" Background="#AA777777">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="moduleTitle" FontSize="24" FontWeight="SemiBold" Text="Module Title" />
+                            <TextBlock x:Name="moduleCode" FontSize="22" Text="Module Code" />
+                            <TextBlock x:Name="lecName" FontSize="22" Text="Lecturer Name" />
+                            <TextBlock x:Name="intakeCode" FontSize="22" Text="Intake Code" />
+                            <TextBlock x:Name="startTime" Text="Time" FontSize="20"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="482" Background="{Binding myBrush}">
                             <StackPanel Orientation="Horizontal">
-                                <Grid Width="8" Background="{Binding myBrush}"/>
-                                <StackPanel Padding="20,12,0,16">
-                                    <TextBlock x:Name="moduleTitle" FontSize="24" FontWeight="SemiBold" Text="{Binding ModuleName}" />
-                                    <TextBlock x:Name="moduleCode" FontSize="22" Text="{Binding ModuleCode}" />
-                                    <TextBlock x:Name="lecName" FontSize="22" Text="{Binding LecturerName}" />
-                                    <TextBlock x:Name="intakeCode" FontSize="22" Text="{Binding IntakeCode}" />
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock x:Name="startTime" Text="{Binding StartTime}" FontSize="20"/>
-                                        <TextBlock Text=" -  " FontSize="20"/>
-                                        <TextBlock Text="{Binding EndTime}" x:Name="endTime" FontSize="20"/>
-                                    </StackPanel>
+                                <TextBlock x:Name="moduleTitle" FontSize="24" FontWeight="SemiBold" Text="{Binding ModuleName}" />
+                                <TextBlock x:Name="moduleCode" FontSize="22" Text="{Binding ModuleCode}" />
+                                <TextBlock x:Name="lecName" FontSize="22" Text="{Binding LecturerName}" />
+                                <TextBlock x:Name="intakeCode" FontSize="22" Text="{Binding IntakeCode}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="startTime" Text="{Binding StartTime}" FontSize="20"/>
+                                    <TextBlock Text=" -  " FontSize="20"/>
+                                    <TextBlock Text="{Binding EndTime}" x:Name="endTime" FontSize="20"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </ListView.ItemTemplate>
+            </ListView>
         </RelativePanel>
     </Grid>
 </Page>
