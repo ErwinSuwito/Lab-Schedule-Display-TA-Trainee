@@ -50,6 +50,7 @@ namespace Lab_Schedule_Display
 
         private void mapImage_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
+            DropShadowPanel1.Visibility = Visibility.Visible;
             ImageError.Begin();
         }
     }
