@@ -70,6 +70,11 @@
             <ListView Background="Transparent" Width="Auto" Margin="60,8,0,52" 
                      HorizontalAlignment="Left" VerticalAlignment="Top" 
                      x:Name="LabScheduleView" RelativePanel.Below="LabScheduleHeader">
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition IsStaggeringEnabled="True" />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
                 <ListView.HeaderTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

@@ -37,6 +37,11 @@
             </StackPanel>
 
             <GridView x:Name="LabsList" Margin="60,12,0,0" RelativePanel.Below="pageHeader">
+                <GridView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition IsStaggeringEnabled="True" />
+                    </TransitionCollection>
+                </GridView.ItemContainerTransitions>
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="datalayer:Labs">
                         <local:LabItem LabName="{x:Bind LabName}" LabLocation="{x:Bind LabLocation}" Level="{x:Bind Level}" />

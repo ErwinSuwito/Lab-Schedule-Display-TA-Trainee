@@ -48,6 +48,12 @@
                         HorizontalAlignment="Left" VerticalAlignment="Top"/>
             </StackPanel>
             <GridView VerticalAlignment="Top" x:Name="AvailableLabsList" Margin="0,78,0,0">
+                <GridView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition IsStaggeringEnabled="True" />
+                        <RepositionThemeTransition IsStaggeringEnabled="True" />
+                    </TransitionCollection>
+                </GridView.ItemContainerTransitions>
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="datalayer:Labs">
                         <local:LabItemnew LabName="{x:Bind LabName}" LabLocation="{x:Bind LabLocation}" SelectedTime="{Binding SelectedTime}" Level="{x:Bind Level}"/>

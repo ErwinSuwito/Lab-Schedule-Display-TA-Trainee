@@ -69,6 +69,13 @@
         </controls:DropShadowPanel>
 
         <GridView IsItemClickEnabled="True" ItemClick="searchResult_ItemClick" x:Name="searchResult" Background="Transparent" Width="1000" Margin="0,120,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <GridView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition IsStaggeringEnabled="True" />
+                    <RepositionThemeTransition IsStaggeringEnabled="True" />
+                    <AddDeleteThemeTransition />
+                </TransitionCollection>
+            </GridView.ItemContainerTransitions>
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="datalayer:SearchResults">
                     <controls:DropShadowPanel BlurRadius="20.0" ShadowOpacity="0.40"
