@@ -45,12 +45,18 @@ namespace Lab_Schedule_Display
             {
                 rootFrame.Navigate(typeof(MainPage), 6, new DrillInNavigationTransitionInfo());
             }
+            else if (clickedItem.Tag.ToString() == "Availability")
+            {
+                rootFrame.Navigate(typeof(LabAvailability), null, new DrillInNavigationTransitionInfo());
+            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            navigationList.SelectedIndex = 0;
-            rootFrame.Navigate(typeof(MainPage), 4, new DrillInNavigationTransitionInfo());
+            navigationList.SelectedIndex = 2;
+            rootFrame.Navigate(typeof(LabAvailability), null, new DrillInNavigationTransitionInfo());
+            dateText.Text = DateTime.Now.ToLongDateString();
+            timeText.Text = DateTime.Now.ToShortTimeString();
         }
     }
 }

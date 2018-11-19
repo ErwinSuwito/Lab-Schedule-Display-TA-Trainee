@@ -110,6 +110,9 @@
     <Compile Include="DataLayers\Schedules.cs" />
     <Compile Include="DataLayers\SearchResults.cs" />
     <Compile Include="errorParameters.cs" />
+    <Compile Include="LabAvailability.xaml.cs">
+      <DependentUpon>LabAvailability.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LabItemnew.xaml.cs">
       <DependentUpon>LabItemnew.xaml</DependentUpon>
     </Compile>
@@ -174,6 +177,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Checks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LabAvailability.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

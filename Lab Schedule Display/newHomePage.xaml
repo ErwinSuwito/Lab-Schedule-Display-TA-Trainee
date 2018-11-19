@@ -19,9 +19,9 @@
 
         <Grid  Grid.Column="1" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
             <StackPanel x:Name="DateTimePanel" Margin="0,60,52,0" 
-                        HorizontalAlignment="Right" VerticalAlignment="Top">
+                        HorizontalAlignment="Center" VerticalAlignment="Top">
                 <TextBlock x:Name="timeText" TextAlignment="Center"  FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}"/>
-                <TextBlock x:Name="dateText" TextAlignment="Center" FontWeight="SemiBold" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                <TextBlock x:Name="dateText" TextAlignment="Center" FontWeight="SemiBold" Style="{ThemeResource TitleTextBlockStyle}" />
             </StackPanel>
 
             <ListView x:Name="navigationList" ItemClick="ListView_ItemClick"
@@ -36,6 +36,13 @@
                 <Grid Tag="Level6" MinWidth="240" MinHeight="120">
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock Text="Level 6" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                    </StackPanel>
+                </Grid>
+
+                <Grid Tag="Availability" MinWidth="240" MinHeight="120">
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="&#xE8A9;" TextAlignment="Center" FontFamily="Segoe MDL2 Assets" Style="{ThemeResource HeaderTextBlockStyle}" />
+                        <TextBlock Text="Lab Availability" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
                     </StackPanel>
                 </Grid>
 
