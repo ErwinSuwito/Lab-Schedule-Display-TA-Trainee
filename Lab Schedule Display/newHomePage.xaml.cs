@@ -49,6 +49,14 @@ namespace Lab_Schedule_Display
             {
                 rootFrame.Navigate(typeof(LabAvailability), null, new DrillInNavigationTransitionInfo());
             }
+            else if (clickedItem.Tag.ToString() == "Level3")
+            {
+                rootFrame.Navigate(typeof(MainPage), 3, new DrillInNavigationTransitionInfo());
+            }
+            else if (clickedItem.Tag.ToString() == "Level5")
+            {
+                rootFrame.Navigate(typeof(MainPage), 5, new DrillInNavigationTransitionInfo());
+            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

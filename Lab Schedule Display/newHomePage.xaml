@@ -25,11 +25,24 @@
             </StackPanel>
 
             <ListView x:Name="navigationList" ItemClick="ListView_ItemClick"
-                      IsItemClickEnabled="True"
+                      IsItemClickEnabled="True" Margin="0,36,0,0"
                       HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <Grid Tag="Level3" MinWidth="240" MinHeight="120">
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Level 3" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                    </StackPanel>
+                </Grid>
+                
                 <Grid Tag="Level4" MinWidth="240" MinHeight="120">
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock Text="Level 4" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                    </StackPanel>
+                </Grid>
+
+                <Grid Tag="Level5" MinWidth="240" MinHeight="120">
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Level 5" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
                     </StackPanel>
                 </Grid>
 
