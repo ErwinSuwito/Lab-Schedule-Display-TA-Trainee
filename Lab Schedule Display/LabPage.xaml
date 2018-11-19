@@ -18,7 +18,7 @@
     </Page.Resources>
 
     <Grid>
-        <Image x:Name="bgImage" Stretch="UniformToFill"/>
+        <Image x:Name="bgImage" Stretch="UniformToFill" ImageFailed="bgImage_ImageFailed"/>
         <Grid Background="#88000000" x:Name="backgroundAcrylic"/>
         <RelativePanel x:Name="rootPanel">
             <StackPanel Orientation="Horizontal">

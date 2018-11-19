@@ -200,5 +200,17 @@ namespace Lab_Schedule_Display
         {
             Frame.Navigate(typeof(MapPage), headerText.Text);
         }
+
+        private void bgImage_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            if (labStatus.Text == "This lab has been closed." || labStatus.Text == "This lab is unavailable for use.")
+            {
+                rootPanel.Background = new SolidColorBrush(Color.FromArgb(255, 114, 33, 33));
+            }
+            else
+            {
+                backgroundAcrylic.Background = new SolidColorBrush(Color.FromArgb(255, 33, 114, 33));
+            }
+        }
     }
 }

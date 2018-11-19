@@ -61,7 +61,7 @@ namespace Lab_Schedule_Display
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            navigationList.SelectedIndex = 2;
+            navigationList.SelectedIndex = 4;
             rootFrame.Navigate(typeof(LabAvailability), null, new DrillInNavigationTransitionInfo());
             dateText.Text = DateTime.Now.ToLongDateString();
             timeText.Text = DateTime.Now.ToShortTimeString();
