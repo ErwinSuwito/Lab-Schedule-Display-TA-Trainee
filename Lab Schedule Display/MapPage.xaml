@@ -17,7 +17,8 @@
         <Storyboard x:Name="ImageError">
             <DoubleAnimation Storyboard.TargetName="DropShadowPanel1"
                              Storyboard.TargetProperty="Opacity" 
-                             From="0.0" To="1.0" Duration="0:0:0.2"/>
+                             From="0.0" To="1.0"
+                             Duration="0:0:0.2"/>
         </Storyboard>
     </Page.Resources>
 
@@ -39,7 +40,8 @@
                 <Image x:Name="mapImage" ImageFailed="mapImage_ImageFailed"/>
             </ScrollViewer>
             <controls:DropShadowPanel Margin="60,32,0,0" x:Name="DropShadowPanel1" HorizontalAlignment="Center" VerticalAlignment="Center"
-                 RelativePanel.Below="pageHeader"  BlurRadius="20.0" ShadowOpacity="0.40" OffsetX="0" OffsetY="8.0" Color="Black" Opacity="0">
+                 RelativePanel.Below="pageHeader"  BlurRadius="20.0" ShadowOpacity="0.40" OffsetX="0" OffsetY="8.0" Color="Black" 
+                 Visibility="Collapsed" Opacity="0">
                 <Grid x:Name="dbError" Height="320" Width="580" Background="#FF3A3A3A" VerticalAlignment="Top" HorizontalAlignment="Left" >
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                         <StackPanel Margin="40,44,24,24">
