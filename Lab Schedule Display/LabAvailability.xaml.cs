@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -12,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Lab_Schedule_Display.DataLayers;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -41,8 +44,8 @@ namespace Lab_Schedule_Display
         private void timePicker1_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
         {
             selectedTime = timePicker1.Time;
-            var newHome1 = new newHome();
-            AvailableLabsList.ItemsSource = newHome1.GetLabs((App.Current as App).ConnectionString, timePicker1.Time);
+
+            AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString, selectedTime);
             if (AvailableLabsList.Items.Count == 0)
             {
                 NoLabsAvailable.Begin();
@@ -51,6 +54,45 @@ namespace Lab_Schedule_Display
             {
                 LabsAvailable.Begin();
             }
+        }
+
+        public ObservableCollection<Labs> GetLabs(string connectionString, TimeSpan timeSpan)
+        {
+            string GetLabsQuery = "SELECT DISTINCT * FROM labs WHERE labs.CloseTime > CONVERT(time,'" + timePicker1.Time.ToString() + "')";
+
+            var labs = new ObservableCollection<Labs>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    if (conn.State == System.Data.ConnectionState.Open)
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.CommandText = GetLabsQuery;
+                            using (SqlDataReader dr = cmd.ExecuteReader())
+                            {
+                                while (dr.Read())
+                                {
+                                    var lab = new Labs();
+                                    lab.LabName = dr.GetString(0);
+                                    lab.LabLocation = dr.GetString(1);
+                                    lab.SelectedTime = timePicker1.Time.ToString();
+                                    lab.Level = "Level " + dr.GetInt32(2).ToString();
+                                    labs.Add(lab);
+                                }
+                            }
+                        }
+                    }
+                }
+                return labs;
+            }
+            catch (Exception exSql)
+            {
+                Helpers.ShowMsgComplete(exSql.Message, "Unable to connect to the database.");
+            }
+            return null;
         }
     }
 }
