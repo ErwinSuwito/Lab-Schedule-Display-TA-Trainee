@@ -53,6 +53,7 @@ namespace Lab_Schedule_Display
             currentTime.Text = DateTime.Now.ToShortTimeString();
             currentDate.Text = DateTime.Now.ToLongDateString();
 
+            
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

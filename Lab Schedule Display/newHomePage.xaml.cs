@@ -65,6 +65,16 @@ namespace Lab_Schedule_Display
             rootFrame.Navigate(typeof(LabAvailability), null, new DrillInNavigationTransitionInfo());
             dateText.Text = DateTime.Now.ToLongDateString();
             timeText.Text = DateTime.Now.ToShortTimeString();
+
+            DispatcherTimer dispatcher = new DispatcherTimer();
+            dispatcher.Interval = new TimeSpan(0, 0, 30);
+            dispatcher.Tick += Dispatcher_Tick;
+            dispatcher.Start();
+        }
+
+        private void Dispatcher_Tick(object sender, object e)
+        {
+            timeText.Text = DateTime.Now.ToShortTimeString();
         }
     }
 }
