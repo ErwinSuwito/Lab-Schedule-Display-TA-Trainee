@@ -17,48 +17,55 @@
 
         <Frame x:Name="rootFrame" Grid.Column="0" x:FieldModifier="public"/>
 
-        <Grid  Grid.Column="1" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
-            <StackPanel x:Name="DateTimePanel" Margin="0,60,52,0" 
+        <controls:DropShadowPanel x:Name="DropShadowPanel3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                  RelativePanel.Below="LabScheduleHeader" BlurRadius="20.0" ShadowOpacity="0.40" OffsetX="0" 
+                                  Margin="60,12,0,0" OffsetY="8.0" Color="Black" Opacity="1"
+                                  Grid.Column="1" >
+            
+            <StackPanel Padding="12,12,12,52" Grid.Column="1" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
+                <StackPanel x:Name="DateTimePanel" Margin="52,52,52,0" 
                         HorizontalAlignment="Center" VerticalAlignment="Top">
-                <TextBlock x:Name="timeText" TextAlignment="Center"  FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}"/>
-                <TextBlock x:Name="dateText" TextAlignment="Center" FontWeight="SemiBold" Style="{ThemeResource TitleTextBlockStyle}" />
-            </StackPanel>
+                    <TextBlock x:Name="timeText" TextAlignment="Center"  FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}"/>
+                    <TextBlock x:Name="dateText" TextAlignment="Center" FontWeight="SemiBold" Style="{ThemeResource TitleTextBlockStyle}" />
+                </StackPanel>
 
-            <ListView x:Name="navigationList" ItemClick="ListView_ItemClick"
+                <ListView Margin="0,24,0,0" x:Name="navigationList" ItemClick="ListView_ItemClick"
                       IsItemClickEnabled="True"
                       HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Grid Tag="Level4" MinWidth="240" MinHeight="120">
-                    <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="Level 4" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
-                    </StackPanel>
-                </Grid>
+                    <Grid Tag="Level4" MinWidth="240" MinHeight="120">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Level 4" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                        </StackPanel>
+                    </Grid>
 
-                <Grid Tag="Level6" MinWidth="240" MinHeight="120">
-                    <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="Level 6" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
-                    </StackPanel>
-                </Grid>
+                    <Grid Tag="Level6" MinWidth="240" MinHeight="120">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Level 6" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                        </StackPanel>
+                    </Grid>
 
-                <Grid Tag="Availability" MinWidth="240" MinHeight="120">
-                    <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="&#xE8A9;" TextAlignment="Center" FontFamily="Segoe MDL2 Assets" Style="{ThemeResource HeaderTextBlockStyle}" />
-                        <TextBlock Text="Lab Availability" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
-                    </StackPanel>
-                </Grid>
+                    <Grid Tag="Availability" MinWidth="240" MinHeight="120">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="&#xE8A9;" TextAlignment="Center" FontFamily="Segoe MDL2 Assets" Style="{ThemeResource HeaderTextBlockStyle}" />
+                            <TextBlock Text="Lab Availability" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                        </StackPanel>
+                    </Grid>
 
-                <Grid Tag="Search" MinWidth="240" MinHeight="120">
-                    <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="&#xE71E;" TextAlignment="Center" FontFamily="Segoe MDL2 Assets" Style="{ThemeResource HeaderTextBlockStyle}" />
-                        <TextBlock Text="Search" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
-                    </StackPanel>
-                </Grid>
-            </ListView>
+                    <Grid Tag="Search" MinWidth="240" MinHeight="120">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="&#xE71E;" TextAlignment="Center" FontFamily="Segoe MDL2 Assets" Style="{ThemeResource HeaderTextBlockStyle}" />
+                            <TextBlock Text="Search" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                        </StackPanel>
+                    </Grid>
+                </ListView>
 
-            <!--<Grid VerticalAlignment="Bottom" Height="52"
+                <!--<Grid VerticalAlignment="Bottom" Height="52"
                   Background="{ThemeResource SystemControlBackgroundAccentBrush}">
                 <TextBlock Text="Switch to old UI" FontSize="24" Foreground="White"
                            HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>-->
-        </Grid>
+            </StackPanel>
+        </controls:DropShadowPanel>
+        
     </Grid>
 </Page>
