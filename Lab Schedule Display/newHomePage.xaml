@@ -15,12 +15,42 @@
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="1">
-            <StackPanel Margin="0,60,36,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-                <TextBlock Text="08:50 AM" TextAlignment="Right" FontWeight="Bold" Style="{ThemeResource SubheaderTextBlockStyle}"/>
-                <TextBlock Text="Monday" TextAlignment="Right" Style="{ThemeResource TitleTextBlockStyle}" />
-                <TextBlock Text="19 November 2018" TextAlignment="Right" Style="{ThemeResource TitleTextBlockStyle}" />
+        <Frame x:Name="rootFrame" Grid.Column="0" />
+
+        <Grid  Grid.Column="1" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
+            <StackPanel x:Name="DateTimePanel" Margin="0,60,52,0" 
+                        HorizontalAlignment="Right" VerticalAlignment="Top">
+                <TextBlock x:Name="timeText" TextAlignment="Center"  FontWeight="Bold" Style="{ThemeResource HeaderTextBlockStyle}"/>
+                <TextBlock x:Name="dateText" TextAlignment="Center" FontWeight="SemiBold" Style="{ThemeResource SubheaderTextBlockStyle}" />
             </StackPanel>
+
+            <ListView ItemClick="ListView_ItemClick" IsItemClickEnabled="True"
+                      HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid Tag="Level4" MinWidth="240" MinHeight="120">
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Level 4" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                    </StackPanel>
+                </Grid>
+
+                <Grid Tag="Level6" MinWidth="240" MinHeight="120">
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Level 6" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                    </StackPanel>
+                </Grid>
+
+                <Grid Tag="Search" MinWidth="240" MinHeight="120">
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="&#xE71E;" TextAlignment="Center" FontFamily="Segoe MDL2 Assets" Style="{ThemeResource HeaderTextBlockStyle}" />
+                        <TextBlock Text="Search" TextAlignment="Center" FontWeight="Normal" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                    </StackPanel>
+                </Grid>
+            </ListView>
+
+            <!--<Grid VerticalAlignment="Bottom" Height="52"
+                  Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+                <TextBlock Text="Switch to old UI" FontSize="24" Foreground="White"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>-->
         </Grid>
     </Grid>
 </Page>

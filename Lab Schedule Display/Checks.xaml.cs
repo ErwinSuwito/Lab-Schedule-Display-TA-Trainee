@@ -45,7 +45,7 @@ namespace Lab_Schedule_Display
 
             if (connectTest == true)
             {
-                this.Frame.Navigate(typeof(newHome),"" , new DrillInNavigationTransitionInfo());
+                this.Frame.Navigate(typeof(newHomePage),"" , new DrillInNavigationTransitionInfo());
             }
             else
             {

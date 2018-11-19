@@ -26,5 +26,15 @@ namespace Lab_Schedule_Display
         {
             this.InitializeComponent();
         }
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var clickedItem = (Grid)e.ClickedItem;
+
+            if (clickedItem.Tag.ToString() == "Search")
+            {
+                rootFrame.Navigate(typeof(SearchPage));
+            }
+        }
     }
 }
