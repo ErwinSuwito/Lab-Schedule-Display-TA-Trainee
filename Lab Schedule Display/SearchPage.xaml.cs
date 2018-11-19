@@ -68,7 +68,8 @@ namespace Lab_Schedule_Display
 
         public ObservableCollection<SearchResults> GetSearchResults(string connectionString)
         {
-            string GetLevelsQuery = "SELECT DISTINCT * FROM Schedule JOIN labs ON labs.LabName = Schedule.LabName JOIN lecturer ON lecturer.LecturerID = Schedule.LecturerID JOIN modules ON modules.ModuleCode = Schedule.ModuleCode WHERE (Schedule.LecturerID=(SELECT LecturerID FROM lecturer WHERE LecName LIKE'%" + searchBox.Text + "%') Or Schedule.LabName LIKE '%" + searchBox.Text + "%' Or Schedule.ModuleCode LIKE '%" + searchBox.Text + "%' Or Schedule.ModuleCode=(SELECT ModuleCode FROM modules WHERE ModuleName LIKE '%" + searchBox.Text + "%')) AND Schedule.UseDate = CONVERT(date, GETDATE())";
+            string GetLevelsQuery = "SELECT DISTINCT * FROM Schedule JOIN labs ON labs.LabName = Schedule.LabName JOIN lecturer ON lecturer.LecturerID = Schedule.LecturerID JOIN modules ON modules.ModuleCode = Schedule.ModuleCode WHERE (Schedule.LecturerID=(SELECT LecturerID FROM lecturer WHERE LecName LIKE'%" + searchBox.Text + "%') Or Schedule.LabName LIKE '%" + searchBox.Text + "%' Or Schedule.ModuleCode LIKE '%" + searchBox.Text + "%' Or Schedule.ModuleCode=(SELECT ModuleCode FROM modules WHERE ModuleName LIKE '%" + searchBox.Text + "%') OR Schedule.IntakeCode='" + searchBox.Text + "') AND Schedule.UseDate = CONVERT(date, GETDATE())";
+            Debug.WriteLine(GetLevelsQuery);
 
             var results = new ObservableCollection<SearchResults>();
             try

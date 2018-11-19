@@ -36,10 +36,10 @@
         <controls:DropShadowPanel x:Name="DropShadowPanel2" HorizontalAlignment="Center" VerticalAlignment="Top"
                                   BlurRadius="20.0" ShadowOpacity="0.40" OffsetX="0" OffsetY="8.0" Color="Black"
                                   Margin="0,52,0,0">
-            <Grid x:Name="searchBar" Height="60" Width="800" 
+            <Grid x:Name="searchBar" Height="60" Width="912" 
                               Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
                               VerticalAlignment="Top" HorizontalAlignment="Left" >
-                <TextBox x:Name="searchBox" PlaceholderText="Enter module name, code, or lecturer name..." Foreground="{ThemeResource TextBoxForegroundThemeBrush}"
+                <TextBox x:Name="searchBox" PlaceholderText="Enter intake code, module name, code, or lecturer name..." Foreground="{ThemeResource TextBoxForegroundThemeBrush}"
                                          Style="{ThemeResource CustomSearchBar}" Margin="0,0,160,0" TextChanged="searchBox_TextChanged" FontSize="28"/>
                 <Button x:Name="searchButton" Width="160" Height="60"
                                     Click="searchButton_Click"
