@@ -73,26 +73,26 @@
                 <ListView.HeaderTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock x:Name="moduleTitle" FontSize="24" FontWeight="SemiBold" Text="Module Title" />
-                            <TextBlock x:Name="moduleCode" FontSize="22" Text="Module Code" />
-                            <TextBlock x:Name="lecName" FontSize="22" Text="Lecturer Name" />
-                            <TextBlock x:Name="intakeCode" FontSize="22" Text="Intake Code" />
-                            <TextBlock x:Name="startTime" Text="Time" FontSize="20"/>
+                            <TextBlock FontSize="24" Width="272" Text="Module Title" />
+                            <TextBlock FontSize="24" Width="272" Text="Module Code" />
+                            <TextBlock FontSize="24" Width="272" Text="Lecturer Name" />
+                            <TextBlock FontSize="24" Width="272" Text="Intake Code" />
+                            <TextBlock Text="Time" Width="100" FontSize="24"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.HeaderTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Width="482" Background="{Binding myBrush}">
+                        <Grid >
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Name="moduleTitle" FontSize="24" FontWeight="SemiBold" Text="{Binding ModuleName}" />
-                                <TextBlock x:Name="moduleCode" FontSize="22" Text="{Binding ModuleCode}" />
-                                <TextBlock x:Name="lecName" FontSize="22" Text="{Binding LecturerName}" />
-                                <TextBlock x:Name="intakeCode" FontSize="22" Text="{Binding IntakeCode}" />
+                                <TextBlock x:Name="moduleTitle" FontSize="24" Width="272" Text="{Binding ModuleName}" />
+                                <TextBlock x:Name="moduleCode" FontSize="24" Width="272" Text="{Binding ModuleCode}" />
+                                <TextBlock x:Name="lecName" FontSize="24" Width="272" Text="{Binding LecturerName}" />
+                                <TextBlock x:Name="intakeCode" FontSize="24" Width="272" Text="{Binding IntakeCode}" />
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock x:Name="startTime" Text="{Binding StartTime}" FontSize="20"/>
-                                    <TextBlock Text=" -  " FontSize="20"/>
-                                    <TextBlock Text="{Binding EndTime}" x:Name="endTime" FontSize="20"/>
+                                    <TextBlock x:Name="startTime" Text="{Binding StartTime}" FontSize="24"/>
+                                    <TextBlock Text=" -  " FontSize="24"/>
+                                    <TextBlock Text="{Binding EndTime}" x:Name="endTime" FontSize="24"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
