@@ -158,8 +158,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="LabAssets\TL04-02.jpeg" />
     <Content Include="LabAssets\TL04-04.jpeg" />
     <Content Include="LabAssets\TL04-06.jpeg" />
+    <Content Include="LabAssets\TL06-01.jpeg" />
+    <Content Include="LabAssets\TL06-02.jpeg" />
+    <Content Include="LabAssets\TL06-03.jpeg" />
+    <Content Include="LabAssets\TL06-06.jpeg" />
+    <Content Include="LabAssets\TL06-08.jpeg" />
     <Content Include="MapAssets\Level 6.jpg" />
     <Content Include="MapAssets\Level 4.jpg" />
     <Content Include="Properties\Default.rd.xml" />
