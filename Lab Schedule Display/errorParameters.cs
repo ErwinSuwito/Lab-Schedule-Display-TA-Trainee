@@ -10,7 +10,6 @@ namespace Lab_Schedule_Display
     {
         public string ErrorMessage { get; set; }
         public string StackTrace { get; set; }
-
         public bool AutoNavigate { get; set; }
     }
 }
