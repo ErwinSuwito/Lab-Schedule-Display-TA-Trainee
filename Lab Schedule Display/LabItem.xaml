@@ -8,7 +8,15 @@
     mc:Ignorable="d" Height="322" Width="528" Loaded="UserControl_Loaded">
 
     <Grid Background="#66DDDDDD">
-        <Image x:Name="bgPicture" Stretch="UniformToFill" ImageFailed="bgPicture_ImageFailed"/>
+        <Grid.Resources>
+            <Storyboard x:Name="bgPictureFadeIn">
+                <DoubleAnimation Storyboard.TargetName="bgPicture"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="0" To="1" Duration="0:0:0.5"
+                                 BeginTime="0:0:0.2"/>
+            </Storyboard>
+        </Grid.Resources>
+        <Image x:Name="bgPicture" Stretch="UniformToFill" Opacity="0" ImageFailed="bgPicture_ImageFailed"/>
         <Grid x:Name="bgFilter" Visibility="Collapsed" Background="#99FFFFFF"/>
         <StackPanel Margin="24,28,0,0">
             <TextBlock x:Name="labname" Text="{Binding LabName}" FontSize="52" Style="{ThemeResource TitleTextBlockStyle}" />

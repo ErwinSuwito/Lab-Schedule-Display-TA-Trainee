@@ -67,6 +67,7 @@ namespace Lab_Schedule_Display
         {
             Debug.WriteLine(LabName.ToString());
             bgPicture.Source = new BitmapImage(new Uri(this.BaseUri, "/LabAssets/" + LabName.ToString() +".jpeg"));
+            bgPictureFadeIn.Begin();
             bgFilter.Visibility = Visibility.Visible;
         }
 
