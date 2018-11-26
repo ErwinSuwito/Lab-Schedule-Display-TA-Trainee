@@ -46,8 +46,8 @@ namespace Lab_Schedule_Display
                     connectTest.Open();
                     return true;
                 }
-                catch (SqlException)
-                {
+                catch (SqlException ex)
+                { 
                     return false;
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -64,7 +65,8 @@ namespace Lab_Schedule_Display
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            bgPicture.Source = new BitmapImage(new Uri(this.BaseUri, "/LabAssets/" + labname.Text +".jpeg"));
+            Debug.WriteLine(LabName.ToString());
+            bgPicture.Source = new BitmapImage(new Uri(this.BaseUri, "/LabAssets/" + LabName.ToString() +".jpeg"));
             bgFilter.Visibility = Visibility.Visible;
         }
 

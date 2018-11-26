@@ -76,7 +76,7 @@ namespace Lab_Schedule_Display
 
         public void Startup()
         {
-            this.FocusVisualKind = FocusVisualKind.Reveal;
+            //this.FocusVisualKind = FocusVisualKind.Reveal;
 
             ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
             bool tryEnterFullScreen = false;

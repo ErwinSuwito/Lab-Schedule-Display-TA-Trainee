@@ -21,7 +21,7 @@
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
     <PackageCertificateThumbprint>0B8E31C9F470290AD5865E36D65A65F4F6341EBD</PackageCertificateThumbprint>
@@ -158,12 +158,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="LabAssets\3-01.jpeg" />
+    <Content Include="LabAssets\Centre and Development for IoT.jpeg" />
+    <Content Include="LabAssets\Cisco.jpeg" />
+    <Content Include="LabAssets\Cyber Range.jpeg" />
+    <Content Include="LabAssets\Office 1.jpeg" />
+    <Content Include="LabAssets\Office 2&amp;3.jpeg" />
+    <Content Include="LabAssets\Office 4.jpeg" />
+    <Content Include="LabAssets\Office Beside Server Room.jpeg" />
+    <Content Include="LabAssets\Security Operations.jpeg" />
+    <Content Include="LabAssets\TL03-01.jpeg" />
+    <Content Include="LabAssets\TL03-02.jpeg" />
+    <Content Include="LabAssets\TL03-05.jpeg" />
+    <Content Include="LabAssets\TL03-06.jpeg" />
+    <Content Include="LabAssets\TL03-07.jpeg" />
+    <Content Include="LabAssets\TL03-08.jpeg" />
+    <Content Include="LabAssets\TL04-01.jpeg" />
     <Content Include="LabAssets\TL04-02.jpeg" />
     <Content Include="LabAssets\TL04-04.jpeg" />
+    <Content Include="LabAssets\TL04-05.jpeg" />
     <Content Include="LabAssets\TL04-06.jpeg" />
     <Content Include="LabAssets\TL06-01.jpeg" />
     <Content Include="LabAssets\TL06-02.jpeg" />
     <Content Include="LabAssets\TL06-03.jpeg" />
+    <Content Include="LabAssets\TL06-04.jpeg" />
     <Content Include="LabAssets\TL06-06.jpeg" />
     <Content Include="LabAssets\TL06-08.jpeg" />
     <Content Include="MapAssets\Level 6.jpg" />

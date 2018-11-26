@@ -53,7 +53,7 @@ namespace Lab_Schedule_Display
 
         // Using a DependencyProperty as the backing store for SelectedTime.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedTimeProperty =
-            DependencyProperty.Register("SelectedTime", typeof(string), typeof(LabItemnew), new PropertyMetadata(0));
+            DependencyProperty.Register("SelectedTime", typeof(string), typeof(LabItemnew), new PropertyMetadata(default(string)));
 
         public LabItemnew()
         {
