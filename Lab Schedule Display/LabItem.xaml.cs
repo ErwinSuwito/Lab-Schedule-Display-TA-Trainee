@@ -66,7 +66,15 @@ namespace Lab_Schedule_Display
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine(LabName.ToString());
-            bgPicture.Source = new BitmapImage(new Uri(this.BaseUri, "/LabAssets/" + LabName.ToString() +".jpeg"));
+            if (LabName.ToString() == "TL03-CAD/CAM")
+            {
+                bgPicture.Source = new BitmapImage(new Uri(this.BaseUri, "/LabAssets/TL03-CAD.jpeg"));
+            }
+            else
+            {
+                bgPicture.Source = new BitmapImage(new Uri(this.BaseUri, "/LabAssets/" + LabName.ToString() + ".jpeg"));
+            }
+            
             bgPictureFadeIn.Begin();
             bgFilter.Visibility = Visibility.Visible;
         }

@@ -158,21 +158,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Package.StoreAssociation.xml" />
-    <Content Include="LabAssets\3-01.jpeg" />
     <Content Include="LabAssets\Centre and Development for IoT.jpeg" />
-    <Content Include="LabAssets\Cisco.jpeg" />
+    <Content Include="LabAssets\Cisco Lab.jpeg" />
     <Content Include="LabAssets\Cyber Range.jpeg" />
     <Content Include="LabAssets\Office 1.jpeg" />
     <Content Include="LabAssets\Office 2&amp;3.jpeg" />
     <Content Include="LabAssets\Office 4.jpeg" />
-    <Content Include="LabAssets\Office Beside Server Room.jpeg" />
+    <Content Include="LabAssets\Office.jpeg" />
     <Content Include="LabAssets\Security Operations.jpeg" />
-    <Content Include="LabAssets\TL03-01.jpeg" />
-    <Content Include="LabAssets\TL03-02.jpeg" />
-    <Content Include="LabAssets\TL03-05.jpeg" />
-    <Content Include="LabAssets\TL03-06.jpeg" />
-    <Content Include="LabAssets\TL03-07.jpeg" />
-    <Content Include="LabAssets\TL03-08.jpeg" />
+    <Content Include="LabAssets\TL03-APCORE.jpeg" />
+    <Content Include="LabAssets\TL03-CAD.jpeg" />
+    <Content Include="LabAssets\TL03-DL.jpeg" />
+    <Content Include="LabAssets\TL03-FL.jpeg" />
+    <Content Include="LabAssets\TL03-PL.jpeg" />
+    <Content Include="LabAssets\TL03-PL2.jpeg" />
+    <Content Include="LabAssets\TL03-PLC.jpeg" />
+    <Content Include="LabAssets\TL03-ROBO.jpeg" />
     <Content Include="LabAssets\TL04-01.jpeg" />
     <Content Include="LabAssets\TL04-02.jpeg" />
     <Content Include="LabAssets\TL04-04.jpeg" />
@@ -183,6 +184,7 @@
     <Content Include="LabAssets\TL06-03.jpeg" />
     <Content Include="LabAssets\TL06-04.jpeg" />
     <Content Include="LabAssets\TL06-06.jpeg" />
+    <Content Include="LabAssets\TL06-07.jpeg" />
     <Content Include="LabAssets\TL06-08.jpeg" />
     <Content Include="MapAssets\Level 3.jpg" />
     <Content Include="MapAssets\Level 5.jpg" />
