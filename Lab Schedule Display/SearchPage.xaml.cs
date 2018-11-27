@@ -81,29 +81,37 @@ namespace Lab_Schedule_Display
                     {
                         using (SqlCommand cmd = conn.CreateCommand())
                         {
-                            cmd.CommandText = GetLevelsQuery;
-                            cmd.Parameters.AddWithValue("@lecName", searchBox.Text);
-                            cmd.Parameters.AddWithValue("@labName", searchBox.Text);
-                            cmd.Parameters.AddWithValue("@moduleCode", searchBox.Text);
-                            cmd.Parameters.AddWithValue("@modName", searchBox.Text);
-                            cmd.Parameters.AddWithValue("@intakeCode", searchBox.Text);
-
-                            using (SqlDataReader dr = cmd.ExecuteReader())
+                            string searchString = searchBox.Text.Trim();
+                            if (searchString != string.Empty)
                             {
-                                while (dr.Read())
+                                cmd.CommandText = GetLevelsQuery;
+                                cmd.Parameters.AddWithValue("@lecName", searchString);
+                                cmd.Parameters.AddWithValue("@labName", searchString);
+                                cmd.Parameters.AddWithValue("@moduleCode", searchString);
+                                cmd.Parameters.AddWithValue("@modName", searchString);
+                                cmd.Parameters.AddWithValue("@intakeCode", searchString);
+
+                                using (SqlDataReader dr = cmd.ExecuteReader())
                                 {
-                                    var result = new SearchResults();
-                                    result.EndTime = dr.GetTimeSpan(7);
-                                    result.IntakeCode = dr.GetString(4);
-                                    result.LabLocation = dr.GetString(9);
-                                    result.LabName = dr.GetString(1);
-                                    result.UseDate = dr.GetDateTime(5);
-                                    result.LecturerName = dr.GetString(13);
-                                    result.ModuleCode = dr.GetString(2);
-                                    result.ModuleName = dr.GetString(15);
-                                    result.StartTime = dr.GetTimeSpan(6);
-                                    results.Add(result);
+                                    while (dr.Read())
+                                    {
+                                        var result = new SearchResults();
+                                        result.EndTime = dr.GetTimeSpan(7);
+                                        result.IntakeCode = dr.GetString(4);
+                                        result.LabLocation = dr.GetString(9);
+                                        result.LabName = dr.GetString(1);
+                                        result.UseDate = dr.GetDateTime(5);
+                                        result.LecturerName = dr.GetString(13);
+                                        result.ModuleCode = dr.GetString(2);
+                                        result.ModuleName = dr.GetString(15);
+                                        result.StartTime = dr.GetTimeSpan(6);
+                                        results.Add(result);
+                                    }
                                 }
+                            }
+                            else
+                            {
+                                Helpers.ShowMsgComplete("Please enter a search keyword.", "Nothing to search");
                             }
                         }
                     }
