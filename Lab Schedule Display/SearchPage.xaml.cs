@@ -68,7 +68,7 @@ namespace Lab_Schedule_Display
 
         public ObservableCollection<SearchResults> GetSearchResults(string connectionString)
         {
-            string GetLevelsQuery = "SELECT DISTINCT * FROM Schedule JOIN labs ON labs.LabName = Schedule.LabName JOIN lecturer ON lecturer.LecturerID = Schedule.LecturerID JOIN modules ON modules.ModuleCode = Schedule.ModuleCode WHERE (Schedule.LecturerID=(SELECT LecturerID FROM lecturer WHERE LecName LIKE'%" + searchBox.Text + "%') Or Schedule.LabName LIKE '%" + searchBox.Text + "%' Or Schedule.ModuleCode LIKE '%" + searchBox.Text + "%' Or Schedule.ModuleCode=(SELECT ModuleCode FROM modules WHERE ModuleName LIKE '%" + searchBox.Text + "%') OR Schedule.IntakeCode='" + searchBox.Text + "') AND Schedule.UseDate = CONVERT(date, GETDATE())";
+            string GetLevelsQuery = "SELECT DISTINCT * FROM Schedule JOIN labs ON labs.LabName = Schedule.LabName JOIN lecturer ON lecturer.LecturerID = Schedule.LecturerID JOIN modules ON modules.ModuleCode = Schedule.ModuleCode WHERE (Schedule.LecturerID=(SELECT LecturerID FROM lecturer WHERE LecName LIKE'%' + @lecName +'%') Or Schedule.LabName LIKE '%' + @labName + '%' Or Schedule.ModuleCode LIKE '%' + @moduleCode + '%' Or Schedule.ModuleCode=(SELECT ModuleCode FROM modules WHERE ModuleName LIKE '%' + @modName + '%') OR Schedule.IntakeCode=@intakeCode) AND Schedule.UseDate = CONVERT(date, GETDATE())";
             Debug.WriteLine(GetLevelsQuery);
 
             var results = new ObservableCollection<SearchResults>();
@@ -82,6 +82,11 @@ namespace Lab_Schedule_Display
                         using (SqlCommand cmd = conn.CreateCommand())
                         {
                             cmd.CommandText = GetLevelsQuery;
+                            cmd.Parameters.AddWithValue("@lecName", searchBox.Text);
+                            cmd.Parameters.AddWithValue("@labName", searchBox.Text);
+                            cmd.Parameters.AddWithValue("@moduleCode", searchBox.Text);
+                            cmd.Parameters.AddWithValue("@modName", searchBox.Text);
+                            cmd.Parameters.AddWithValue("@intakeCode", searchBox.Text);
 
                             using (SqlDataReader dr = cmd.ExecuteReader())
                             {
