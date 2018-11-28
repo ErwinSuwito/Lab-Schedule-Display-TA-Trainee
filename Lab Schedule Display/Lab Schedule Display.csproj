@@ -21,7 +21,7 @@
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
     <PackageCertificateThumbprint>0B8E31C9F470290AD5865E36D65A65F4F6341EBD</PackageCertificateThumbprint>
@@ -165,7 +165,7 @@
     <Content Include="LabAssets\Office 2&amp;3.jpeg" />
     <Content Include="LabAssets\Office 4.jpeg" />
     <Content Include="LabAssets\Office.jpeg" />
-    <Content Include="LabAssets\Security Operations Centre.jpeg" />
+    <Content Include="LabAssets\Security Operations.jpeg" />
     <Content Include="LabAssets\TL03-APCORE.jpeg" />
     <Content Include="LabAssets\TL03-CAD.jpeg" />
     <Content Include="LabAssets\TL03-DL.jpeg" />
