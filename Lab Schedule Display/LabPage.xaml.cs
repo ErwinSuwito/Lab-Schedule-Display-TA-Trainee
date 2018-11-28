@@ -60,27 +60,12 @@ namespace Lab_Schedule_Display
                                 {
                                     labStatus.Text = "This lab is unavailable for use.";
                                     symbolIcon1.Symbol = Symbol.Cancel;
-                                    //rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
-                                    //Windows.UI.Xaml.Media.AcrylicBrush myBrush = new Windows.UI.Xaml.Media.AcrylicBrush();
-                                    //myBrush.BackgroundSource = Windows.UI.Xaml.Media.AcrylicBackgroundSource.Backdrop;
-                                    //myBrush.TintColor = Color.FromArgb(51, 114, 33, 33);
-                                    //myBrush.FallbackColor = Color.FromArgb(51, 114, 33, 33);
-                                    //myBrush.TintOpacity = 0.5;
-
                                     backgroundAcrylic.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
                                 }
                                 else
                                 {
                                     labStatus.Text = "This lab is available for use.";
                                     symbolIcon1.Symbol = Symbol.Accept;
-                                    //rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 33, 114, 33));
-
-                                    //Windows.UI.Xaml.Media.AcrylicBrush myBrush = new Windows.UI.Xaml.Media.AcrylicBrush();
-                                    //myBrush.BackgroundSource = Windows.UI.Xaml.Media.AcrylicBackgroundSource.Backdrop;
-                                    //myBrush.TintColor = Color.FromArgb(51, 33, 114, 33);
-                                    //myBrush.FallbackColor = Color.FromArgb(51, 33, 114, 33);
-                                    //myBrush.TintOpacity = 0.9;
-
                                     backgroundAcrylic.Background = new SolidColorBrush(Color.FromArgb(51, 33, 114, 33));
                                 }
                             }
@@ -92,13 +77,6 @@ namespace Lab_Schedule_Display
                                     labStatus.Text = "This lab has been closed.";
                                     symbolIcon1.Symbol = Symbol.Cancel;
                                     rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
-
-                                    //Windows.UI.Xaml.Media.AcrylicBrush myBrush = new Windows.UI.Xaml.Media.AcrylicBrush();
-                                    //myBrush.BackgroundSource = Windows.UI.Xaml.Media.AcrylicBackgroundSource.Backdrop;
-                                    //myBrush.TintColor = Color.FromArgb(51, 114, 33, 33);
-                                    //myBrush.FallbackColor = Color.FromArgb(51, 114, 33, 33);
-                                    //myBrush.TintOpacity = 0.5;
-
                                     backgroundAcrylic.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
                                 }
                             }
@@ -108,7 +86,7 @@ namespace Lab_Schedule_Display
             }
             catch (Exception sqlex)
             {
-                Helpers.ShowMsgComplete(sqlex.Message, "An error occurred.");
+                this.Frame.Navigate(typeof(Checks));
             }
         }
 
@@ -174,7 +152,7 @@ namespace Lab_Schedule_Display
             }
             catch (Exception exSql)
             {
-                Helpers.ShowMsgComplete(exSql.Message, "Unable to connect to the database");
+                this.Frame.Navigate(typeof(Checks));
             }
             return null;
         }

@@ -109,9 +109,9 @@ namespace Lab_Schedule_Display
                     }
                 }
             }
-            catch (SqlException sqlex)
+            catch (Exception)
             {
-                Helpers.ShowMsgComplete(sqlex.Message + sqlex.StackTrace + sqlex.LineNumber, "An error occurred.");
+                (Window.Current.Content as Frame).Navigate(typeof(Checks));
             }
         }
     }

@@ -107,14 +107,7 @@ namespace Lab_Schedule_Display
             }
             catch (SqlException exSql)
             {
-                if (Debugger.IsAttached)
-                {
-                    Helpers.ShowMsgComplete(exSql.Message + exSql.StackTrace, "SqlException");
-                }
-                else
-                {
-                    Helpers.ShowMsgComplete("The search query is too short or there is something wrong when connecting to the database. Please try again with another search query. If the problem persists, please contact TA.", "Unable to search");
-                }
+                this.Frame.Navigate(typeof(Checks));
             }
             catch (Exception ex)
             {
