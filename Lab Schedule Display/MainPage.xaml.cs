@@ -85,7 +85,7 @@ namespace Lab_Schedule_Display
             }
             catch (Exception exSql)
             {
-                this.Frame.Navigate(typeof(Checks));
+                Helpers.ShowMsgComplete(exSql.Message, "Unable to connect to the database");
             }
             return null;
         }
