@@ -68,7 +68,7 @@ namespace Lab_Schedule_Display
 
         public ObservableCollection<SearchResults> GetSearchResults(string connectionString)
         {
-            string GetLevelsQuery = "SELECT DISTINCT * FROM Schedule JOIN labs ON labs.LabName = Schedule.LabName JOIN lecturer ON lecturer.LecturerID = Schedule.LecturerID JOIN modules ON modules.ModuleCode = Schedule.ModuleCode WHERE (Schedule.LecturerID=(SELECT LecturerID FROM lecturer WHERE LecName LIKE'%" + searchBox.Text + "%') Or Schedule.LabName LIKE '%" + searchBox.Text + "%' Or Schedule.ModuleCode LIKE '%" + searchBox.Text + "%' Or Schedule.ModuleCode=(SELECT ModuleCode FROM modules WHERE ModuleName LIKE '%" + searchBox.Text + "%') OR Schedule.IntakeCode='" + searchBox.Text + "') AND Schedule.UseDate = CONVERT(date, GETDATE())";
+            string GetLevelsQuery = "SELECT DISTINCT * FROM Schedule JOIN labs ON labs.LabName = Schedule.LabName JOIN lecturer ON lecturer.LecturerID = Schedule.LecturerID JOIN modules ON modules.ModuleCode = Schedule.ModuleCode WHERE (Schedule.LecturerID=(SELECT LecturerID FROM lecturer WHERE LecName LIKE'%' + @lecName +'%') Or Schedule.LabName LIKE '%' + @labName + '%' Or Schedule.ModuleCode LIKE '%' + @moduleCode + '%' Or Schedule.ModuleCode=(SELECT ModuleCode FROM modules WHERE ModuleName LIKE '%' + @modName + '%') OR Schedule.IntakeCode=@intakeCode) AND Schedule.UseDate = CONVERT(date, GETDATE())";
             Debug.WriteLine(GetLevelsQuery);
 
             var results = new ObservableCollection<SearchResults>();
@@ -81,24 +81,37 @@ namespace Lab_Schedule_Display
                     {
                         using (SqlCommand cmd = conn.CreateCommand())
                         {
-                            cmd.CommandText = GetLevelsQuery;
-
-                            using (SqlDataReader dr = cmd.ExecuteReader())
+                            string searchString = searchBox.Text.Trim();
+                            if (searchString != string.Empty)
                             {
-                                while (dr.Read())
+                                cmd.CommandText = GetLevelsQuery;
+                                cmd.Parameters.AddWithValue("@lecName", searchString);
+                                cmd.Parameters.AddWithValue("@labName", searchString);
+                                cmd.Parameters.AddWithValue("@moduleCode", searchString);
+                                cmd.Parameters.AddWithValue("@modName", searchString);
+                                cmd.Parameters.AddWithValue("@intakeCode", searchString);
+
+                                using (SqlDataReader dr = cmd.ExecuteReader())
                                 {
-                                    var result = new SearchResults();
-                                    result.EndTime = dr.GetTimeSpan(7);
-                                    result.IntakeCode = dr.GetString(4);
-                                    result.LabLocation = dr.GetString(9);
-                                    result.LabName = dr.GetString(1);
-                                    result.UseDate = dr.GetDateTime(5);
-                                    result.LecturerName = dr.GetString(13);
-                                    result.ModuleCode = dr.GetString(2);
-                                    result.ModuleName = dr.GetString(15);
-                                    result.StartTime = dr.GetTimeSpan(6);
-                                    results.Add(result);
+                                    while (dr.Read())
+                                    {
+                                        var result = new SearchResults();
+                                        result.EndTime = dr.GetTimeSpan(7);
+                                        result.IntakeCode = dr.GetString(4);
+                                        result.LabLocation = dr.GetString(9);
+                                        result.LabName = dr.GetString(1);
+                                        result.UseDate = dr.GetDateTime(5);
+                                        result.LecturerName = dr.GetString(13);
+                                        result.ModuleCode = dr.GetString(2);
+                                        result.ModuleName = dr.GetString(15);
+                                        result.StartTime = dr.GetTimeSpan(6);
+                                        results.Add(result);
+                                    }
                                 }
+                            }
+                            else
+                            {
+                                Helpers.ShowMsgComplete("Please enter a search keyword.", "Nothing to search");
                             }
                         }
                     }
