@@ -42,73 +42,103 @@ namespace Lab_Schedule_Display
             base.OnNavigatedTo(e);
             labName = e.Parameter.ToString();
             headerText.Text = labName;
-            LabScheduleView.ItemsSource = GetSchedules((App.Current as App).ConnectionString);
-            try
+            if ((App.Current as App).useLocal == false)
             {
-                using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionString))
+                LabScheduleView.ItemsSource = GetSchedules((App.Current as App).ConnectionStringRemote);
+                try
                 {
-                    conn.Open();
-                    if (conn.State == System.Data.ConnectionState.Open)
+                    using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionStringRemote))
                     {
-                        using (SqlCommand cmd = conn.CreateCommand()) 
+                        conn.Open();
+                        if (conn.State == System.Data.ConnectionState.Open)
                         {
-                            cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT(time, GETDATE()) AND EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
-                            cmd.Parameters.AddWithValue("@labName", labName);
-                            using (SqlDataReader dr = cmd.ExecuteReader())
+                            using (SqlCommand cmd = conn.CreateCommand())
                             {
-                                if (dr.HasRows)
+                                cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT(time, GETDATE()) AND EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
+                                cmd.Parameters.AddWithValue("@labName", labName);
+                                using (SqlDataReader dr = cmd.ExecuteReader())
                                 {
-                                    labStatus.Text = "This lab is unavailable for use.";
-                                    symbolIcon1.Symbol = Symbol.Cancel;
-                                    //rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
-                                    //Windows.UI.Xaml.Media.AcrylicBrush myBrush = new Windows.UI.Xaml.Media.AcrylicBrush();
-                                    //myBrush.BackgroundSource = Windows.UI.Xaml.Media.AcrylicBackgroundSource.Backdrop;
-                                    //myBrush.TintColor = Color.FromArgb(51, 114, 33, 33);
-                                    //myBrush.FallbackColor = Color.FromArgb(51, 114, 33, 33);
-                                    //myBrush.TintOpacity = 0.5;
-
-                                    backgroundAcrylic.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
+                                    if (dr.HasRows)
+                                    {
+                                        labStatus.Text = "This lab is unavailable for use.";
+                                        symbolIcon1.Symbol = Symbol.Cancel;
+                                        backgroundAcrylic.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
+                                    }
+                                    else
+                                    {
+                                        labStatus.Text = "This lab is available for use.";
+                                        symbolIcon1.Symbol = Symbol.Accept;
+                                        backgroundAcrylic.Background = new SolidColorBrush(Color.FromArgb(51, 33, 114, 33));
+                                    }
                                 }
-                                else
+                                cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time, GETDATE()) < CloseTime";
+                                using (SqlDataReader dr = cmd.ExecuteReader())
                                 {
-                                    labStatus.Text = "This lab is available for use.";
-                                    symbolIcon1.Symbol = Symbol.Accept;
-                                    //rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 33, 114, 33));
-
-                                    //Windows.UI.Xaml.Media.AcrylicBrush myBrush = new Windows.UI.Xaml.Media.AcrylicBrush();
-                                    //myBrush.BackgroundSource = Windows.UI.Xaml.Media.AcrylicBackgroundSource.Backdrop;
-                                    //myBrush.TintColor = Color.FromArgb(51, 33, 114, 33);
-                                    //myBrush.FallbackColor = Color.FromArgb(51, 33, 114, 33);
-                                    //myBrush.TintOpacity = 0.9;
-
-                                    backgroundAcrylic.Background = new SolidColorBrush(Color.FromArgb(51, 33, 114, 33));
-                                }
-                            }
-                            cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time, GETDATE()) < CloseTime";
-                            using (SqlDataReader dr = cmd.ExecuteReader())
-                            {
-                                if (!dr.HasRows)
-                                {
-                                    labStatus.Text = "This lab has been closed.";
-                                    symbolIcon1.Symbol = Symbol.Cancel;
-                                    rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
-
-                                    //Windows.UI.Xaml.Media.AcrylicBrush myBrush = new Windows.UI.Xaml.Media.AcrylicBrush();
-                                    //myBrush.BackgroundSource = Windows.UI.Xaml.Media.AcrylicBackgroundSource.Backdrop;
-                                    //myBrush.TintColor = Color.FromArgb(51, 114, 33, 33);
-                                    //myBrush.FallbackColor = Color.FromArgb(51, 114, 33, 33);
-                                    //myBrush.TintOpacity = 0.5;
-
-                                    backgroundAcrylic.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
+                                    if (!dr.HasRows)
+                                    {
+                                        labStatus.Text = "This lab has been closed.";
+                                        symbolIcon1.Symbol = Symbol.Cancel;
+                                        rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
+                                        backgroundAcrylic.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                catch (Exception sqlex)
+                {
+                    Helpers.ShowMsgComplete(sqlex.Message, "An error occurred.");
+                }
             }
-            catch (Exception sqlex)
+            else
             {
-                Helpers.ShowMsgComplete(sqlex.Message, "An error occurred.");
+                LabScheduleView.ItemsSource = GetSchedules((App.Current as App).ConnectionStringLocal);
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionStringLocal))
+                    {
+                        conn.Open();
+                        if (conn.State == System.Data.ConnectionState.Open)
+                        {
+                            using (SqlCommand cmd = conn.CreateCommand())
+                            {
+                                cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT(time, GETDATE()) AND EndTime > CONVERT (time, GETDATE()) AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
+                                cmd.Parameters.AddWithValue("@labName", labName);
+                                using (SqlDataReader dr = cmd.ExecuteReader())
+                                {
+                                    if (dr.HasRows)
+                                    {
+                                        labStatus.Text = "This lab is unavailable for use.";
+                                        symbolIcon1.Symbol = Symbol.Cancel;
+                                        backgroundAcrylic.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
+                                    }
+                                    else
+                                    {
+                                        labStatus.Text = "This lab is available for use.";
+                                        symbolIcon1.Symbol = Symbol.Accept;
+                                        backgroundAcrylic.Background = new SolidColorBrush(Color.FromArgb(51, 33, 114, 33));
+                                    }
+                                }
+                                cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time, GETDATE()) < CloseTime";
+                                using (SqlDataReader dr = cmd.ExecuteReader())
+                                {
+                                    if (!dr.HasRows)
+                                    {
+                                        labStatus.Text = "This lab has been closed.";
+                                        symbolIcon1.Symbol = Symbol.Cancel;
+                                        rootPanel.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
+                                        backgroundAcrylic.Background = new SolidColorBrush(Color.FromArgb(51, 114, 33, 33));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception sqlex)
+                {
+                    Helpers.ShowMsgComplete(sqlex.Message, "An error occurred.");
+                }
             }
         }
 
@@ -120,7 +150,7 @@ namespace Lab_Schedule_Display
             }
             else
             {
-                this.Frame.Navigate(typeof(newHome), new DrillInNavigationTransitionInfo());
+                this.Frame.Navigate(typeof(newHomePage), new DrillInNavigationTransitionInfo());
             }
         }
 

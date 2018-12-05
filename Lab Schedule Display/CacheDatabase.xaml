@@ -5,10 +5,18 @@
     xmlns:local="using:Lab_Schedule_Display"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d" Loaded="Page_Loaded"
+    Background="{ThemeResource SystemControlBackgroundAccentBrush}">
 
-    <Grid>
-        
+    <Grid Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ProgressRing Width="64"
+                          Height="64"
+                          Foreground="White"
+                          IsActive="True" />
+            <TextBlock Text="Just a moment..." 
+                       FontSize="26"
+                       Margin="0,8,0,0"/>
+        </StackPanel>
     </Grid>
 </Page>

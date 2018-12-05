@@ -44,6 +44,7 @@ namespace Lab_Schedule_Display
         }
 
         public int UnhandledExceptionTimes;
+        public bool useLocal = false;
         public errorParameters parameters = new errorParameters();
 
         private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
@@ -71,8 +72,11 @@ namespace Lab_Schedule_Display
             e.Handled = true;
         }
 
-        public string connectionString = @"Data Source=.; Initial Catalog=LabSchedule; Integrated Security=SSPI; ";
-        public string ConnectionString { get => connectionString; set => connectionString = value; }
+        public string connectionStringLocal = @"Data Source=.; Initial Catalog=LabSchedule; Integrated Security=SSPI; ";
+        public string ConnectionStringLocal { get => connectionStringLocal; set => connectionStringLocal = value; }
+
+        public string connectionStringRemote = @"Data Source=DESKTOP-F0I39D9\MSSQLSERVER; Initial Catalog=LabSchedule; User Id=kiosk; Password=idjkw.kiosk";
+        public string ConnectionStringRemote { get => connectionStringRemote; set => connectionStringRemote = value; }
 
         public void Startup()
         {

@@ -65,53 +65,106 @@ namespace Lab_Schedule_Display
             (Window.Current.Content as Frame).Navigate(typeof(LabPage), LabName, new DrillInNavigationTransitionInfo());
         }
 
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionString))
+           if ((App.Current as App).useLocal == false)
+           {
+                try
                 {
-                    conn.Open();
-                    if (conn.State == System.Data.ConnectionState.Open)
+                    using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionStringRemote))
                     {
-                        using (SqlCommand cmd = conn.CreateCommand())
+                        conn.Open();
+                        if (conn.State == System.Data.ConnectionState.Open)
                         {
-                            cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT (time,'" + SelectedTime + "') AND EndTime > CONVERT (time, '" + SelectedTime + "') AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
-                            Debug.WriteLine(cmd.CommandText);
-                            cmd.Parameters.AddWithValue("@labName", LabName);
-                            using (SqlDataReader dr = cmd.ExecuteReader())
+                            using (SqlCommand cmd = conn.CreateCommand())
                             {
-                                if (dr.HasRows)
+                                cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT (time,'" + SelectedTime + "') AND EndTime > CONVERT (time, '" + SelectedTime + "') AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
+                                Debug.WriteLine(cmd.CommandText);
+                                cmd.Parameters.AddWithValue("@labName", LabName);
+                                using (SqlDataReader dr = cmd.ExecuteReader())
                                 {
-                                    //unavailable
-                                    //#66C13F3F
-                                    rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#66C13F3F").Color);
+                                    if (dr.HasRows)
+                                    {
+                                        //unavailable
+                                        //#66C13F3F
+                                        rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#66C13F3F").Color);
+                                    }
+                                    else
+                                    {
+                                        //available
+                                        //#663CE05A
+                                        rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#663CE05A").Color);
+                                    }
                                 }
-                                else
+                                //cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time," + currentTime + ") < CloseTime";
+                                cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time,'" + SelectedTime + "') < CloseTime";
+                                using (SqlDataReader dr = cmd.ExecuteReader())
                                 {
-                                    //available
-                                    //#663CE05A
-                                    rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#663CE05A").Color);
-                                }
-                            }
-                            //cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time," + currentTime + ") < CloseTime";
-                            cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time,'" + SelectedTime +"') < CloseTime";
-                            using (SqlDataReader dr = cmd.ExecuteReader())
-                            {
-                                if (!dr.HasRows)
-                                {
-                                    //lab closed
-                                    //#66C13F3F
-                                    rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#FFC13F3F").Color);
+                                    if (!dr.HasRows)
+                                    {
+                                        //lab closed
+                                        //#66C13F3F
+                                        rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#FFC13F3F").Color);
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                catch (SqlException sqlex)
+                {
+                    Helpers.ShowMsgComplete(sqlex.Message + sqlex.StackTrace + sqlex.LineNumber, "An error occurred.");
+                }
             }
-            catch (SqlException sqlex)
+            else
             {
-                Helpers.ShowMsgComplete(sqlex.Message + sqlex.StackTrace + sqlex.LineNumber, "An error occurred.");
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionStringLocal))
+                    {
+                        conn.Open();
+                        if (conn.State == System.Data.ConnectionState.Open)
+                        {
+                            using (SqlCommand cmd = conn.CreateCommand())
+                            {
+                                cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT (time,'" + SelectedTime + "') AND EndTime > CONVERT (time, '" + SelectedTime + "') AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
+                                Debug.WriteLine(cmd.CommandText);
+                                cmd.Parameters.AddWithValue("@labName", LabName);
+                                using (SqlDataReader dr = cmd.ExecuteReader())
+                                {
+                                    if (dr.HasRows)
+                                    {
+                                        //unavailable
+                                        //#66C13F3F
+                                        rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#66C13F3F").Color);
+                                    }
+                                    else
+                                    {
+                                        //available
+                                        //#663CE05A
+                                        rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#663CE05A").Color);
+                                    }
+                                }
+                                //cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time," + currentTime + ") < CloseTime";
+                                cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time,'" + SelectedTime + "') < CloseTime";
+                                using (SqlDataReader dr = cmd.ExecuteReader())
+                                {
+                                    if (!dr.HasRows)
+                                    {
+                                        //lab closed
+                                        //#66C13F3F
+                                        rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#FFC13F3F").Color);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (SqlException sqlex)
+                {
+                    Helpers.ShowMsgComplete(sqlex.Message + sqlex.StackTrace + sqlex.LineNumber, "An error occurred.");
+                }
             }
         }
     }

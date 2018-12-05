@@ -44,7 +44,15 @@ namespace Lab_Schedule_Display
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
         {
-            searchResult.ItemsSource = GetSearchResults((App.Current as App).ConnectionString);
+            if ((App.Current as App).useLocal == false)
+            {
+                searchResult.ItemsSource = GetSearchResults((App.Current as App).ConnectionStringRemote);
+            }
+            else
+            {
+                searchResult.ItemsSource = GetSearchResults((App.Current as App).ConnectionStringLocal);
+            }
+
             if (searchResult.Items.Count == 0)
             {
                 DropShadowPanel3.Visibility = Visibility.Visible;

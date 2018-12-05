@@ -35,7 +35,8 @@ namespace Lab_Schedule_Display
             return HasInternetAccess;
         }
 
-        static public bool ConnectionTest { get { return CheckDbConnection((App.Current as App).connectionString); } }
+        static public bool ConnectionTestLocal { get { return CheckDbConnection((App.Current as App).connectionStringLocal); } }
+        static public bool ConnectionTestRemote { get { return CheckDbConnection((App.Current as App).connectionStringRemote); } }
 
         private static bool CheckDbConnection(string connectionString)
         {

@@ -41,14 +41,29 @@ namespace Lab_Schedule_Display
                 loadProgressText.Text = "No network detected. Trying to connect to the database...";
             }
 
-            bool connectTest = Helpers.ConnectionTest;
+            bool connectTestRemote = Helpers.ConnectionTestRemote;
 
-            if (connectTest == true)
+            if (connectTestRemote == true)
             {
-                this.Frame.Navigate(typeof(newHomePage),"" , new DrillInNavigationTransitionInfo());
+                //TODO: Cache SQL Server tables to SQLite
+                //if (DateTime.Today.DayOfWeek == DayOfWeek.Monday)
+                //{
+                //    this.Frame.Navigate(typeof(CacheDatabase), "", new DrillInNavigationTransitionInfo());
+                //}
+                //else
+                //{
+                //    this.Frame.Navigate(typeof(newHomePage), "", new DrillInNavigationTransitionInfo());
+                //}
             }
             else
             {
+                bool connectTestLocal = Helpers.ConnectionTestLocal;
+
+                if (connectTestLocal == true)
+                {
+                    (App.Current as App).useLocal = true;
+                }
+
                 DropShadowPanel1.Visibility = Visibility.Visible;
                 progressPanel.Visibility = Visibility.Collapsed;
             }

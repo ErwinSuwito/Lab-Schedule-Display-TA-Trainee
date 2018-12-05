@@ -42,7 +42,14 @@ namespace Lab_Schedule_Display
         {
             base.OnNavigatedTo(e);
             parameter = e.Parameter.ToString();
-            LabsList.ItemsSource = Getlabs((App.Current as App).ConnectionString);
+            if ((App.Current as App).useLocal == false)
+            {
+                LabsList.ItemsSource = Getlabs((App.Current as App).ConnectionStringRemote);
+            }
+            else
+            {
+                LabsList.ItemsSource = Getlabs((App.Current as App).ConnectionStringLocal);
+            }
             headerText.Text = "Level " + parameter;
         }
 

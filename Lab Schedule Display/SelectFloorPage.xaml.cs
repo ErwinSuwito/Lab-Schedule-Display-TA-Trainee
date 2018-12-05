@@ -30,7 +30,14 @@ namespace Lab_Schedule_Display
         public SelectFloorPage()
         {
             this.InitializeComponent();
-            LabsList.ItemsSource = GetLevels((App.Current as App).ConnectionString);
+            if ((App.Current as App).useLocal == false)
+            {
+                LabsList.ItemsSource = GetLevels((App.Current as App).ConnectionStringRemote);
+            }
+            else
+            {
+                LabsList.ItemsSource = GetLevels((App.Current as App).ConnectionStringLocal);
+            }
         }
 
         public ObservableCollection<Levels> GetLevels(string connectionString)
