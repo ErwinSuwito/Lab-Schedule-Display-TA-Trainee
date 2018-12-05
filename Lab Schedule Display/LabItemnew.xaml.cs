@@ -136,24 +136,20 @@ namespace Lab_Schedule_Display
                                     if (dr.HasRows)
                                     {
                                         //unavailable
-                                        //#66C13F3F
                                         rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#66C13F3F").Color);
                                     }
                                     else
                                     {
                                         //available
-                                        //#663CE05A
                                         rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#663CE05A").Color);
                                     }
                                 }
-                                //cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time," + currentTime + ") < CloseTime";
                                 cmd.CommandText = "SELECT * FROM labs WHERE LabName=@labName AND CONVERT (time,'" + SelectedTime + "') < CloseTime";
                                 using (SqlDataReader dr = cmd.ExecuteReader())
                                 {
                                     if (!dr.HasRows)
                                     {
                                         //lab closed
-                                        //#66C13F3F
                                         rootGrid.Background = new SolidColorBrush(Helpers.GetSolidColorBrush("#FFC13F3F").Color);
                                     }
                                 }

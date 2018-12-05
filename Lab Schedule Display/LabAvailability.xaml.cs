@@ -26,6 +26,7 @@ namespace Lab_Schedule_Display
     public sealed partial class LabAvailability : Page
     {
         public TimeSpan selectedTime;
+        DispatcherTimer dispatcherTimer;
 
         public LabAvailability()
         {
@@ -45,7 +46,15 @@ namespace Lab_Schedule_Display
         {
             selectedTime = timePicker1.Time;
 
-            AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString, selectedTime);
+            if ((App.Current as App).useLocal == false)
+            {
+                AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionStringRemote, selectedTime);
+            }
+            else
+            {
+                AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionStringLocal, selectedTime);
+            }
+            
             if (AvailableLabsList.Items.Count == 0)
             {
                 NoLabsAvailable.Begin();
