@@ -128,7 +128,6 @@ namespace Lab_Schedule_Display
                             using (SqlCommand cmd = conn.CreateCommand())
                             {
                                 cmd.CommandText = "SELECT * FROM Schedule WHERE StartTime < CONVERT (time,'" + SelectedTime + "') AND EndTime > CONVERT (time, '" + SelectedTime + "') AND LabName=@labName AND UseDate = CONVERT (date, GETDATE())";
-                                Debug.WriteLine(cmd.CommandText);
                                 cmd.Parameters.AddWithValue("@labName", LabName);
                                 using (SqlDataReader dr = cmd.ExecuteReader())
                                 {
