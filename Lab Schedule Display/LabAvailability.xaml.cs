@@ -33,8 +33,14 @@ namespace Lab_Schedule_Display
             this.InitializeComponent();
 
             //fetching data from db
-            var newHome1 = new newHome();
-            AvailableLabsList.ItemsSource = newHome1.GetLabs((App.Current as App).ConnectionString, DateTime.Now.TimeOfDay);
+            if ((App.Current as App).useLocal == false)
+            {
+                AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionStringRemote, DateTime.Now.TimeOfDay);
+            }
+            else
+            {
+                AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionStringLocal, DateTime.Now.TimeOfDay);
+            }
         }
 
         private void resetButton_Click(object sender, RoutedEventArgs e)
