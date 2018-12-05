@@ -54,7 +54,7 @@ namespace Lab_Schedule_Display
 
             try
             {
-                using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionString)
+                using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionStringRemote))
                 {
                     //conn.Open();
                     //if (conn.State == System.Data.ConnectionState.Open)
@@ -82,9 +82,10 @@ namespace Lab_Schedule_Display
                     //    //da4.SelectCommand = "SELECT * FROM Schedule";
 
                     //    //da4.Fill(dataSet, "Schedule");
-                    }
+                }
+                    
 
-                CopyToSqlite();
+                    CopyToSqlite();
             }
             catch (Exception ex)
             { 

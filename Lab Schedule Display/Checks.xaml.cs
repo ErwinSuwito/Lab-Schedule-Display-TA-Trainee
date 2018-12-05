@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -45,23 +46,20 @@ namespace Lab_Schedule_Display
 
             if (connectTestRemote == true)
             {
-                //TODO: Cache SQL Server tables to SQLite
-                //if (DateTime.Today.DayOfWeek == DayOfWeek.Monday)
-                //{
-                //    this.Frame.Navigate(typeof(CacheDatabase), "", new DrillInNavigationTransitionInfo());
-                //}
-                //else
-                //{
-                //    this.Frame.Navigate(typeof(newHomePage), "", new DrillInNavigationTransitionInfo());
-                //}
+                Debug.WriteLine("Remote server accessible");
+                this.Frame.Navigate(typeof(newHomePage));
             }
             else
             {
+
+                Debug.WriteLine("Remote server not accessible");
                 bool connectTestLocal = Helpers.ConnectionTestLocal;
 
                 if (connectTestLocal == true)
                 {
                     (App.Current as App).useLocal = true;
+                    
+                    this.Frame.Navigate(typeof(newHomePage));
                 }
 
                 DropShadowPanel1.Visibility = Visibility.Visible;
