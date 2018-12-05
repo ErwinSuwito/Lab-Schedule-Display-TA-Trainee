@@ -75,7 +75,7 @@ namespace Lab_Schedule_Display
         public string connectionStringLocal = @"Data Source=.; Initial Catalog=LabSchedule; Integrated Security=SSPI; ";
         public string ConnectionStringLocal { get => connectionStringLocal; set => connectionStringLocal = value; }
 
-        public string connectionStringRemote = @"Data Source=DESKTOP-F0I39D9\MSSQLSERVER; Initial Catalog=LabSchedule; User Id=kiosk; Password=idjkw.kiosk";
+        public string connectionStringRemote = @"Data Source=DESKTOP-F0I39D9\MSSQLSERVER; Initial Catalog=LabSchedule; Integrated Security=False; User ID=kiosk; Password=kiosk";
         public string ConnectionStringRemote { get => connectionStringRemote; set => connectionStringRemote = value; }
 
         public void Startup()
