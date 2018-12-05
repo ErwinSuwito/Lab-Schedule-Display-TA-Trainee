@@ -41,6 +41,17 @@ namespace Lab_Schedule_Display
             {
                 AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionStringLocal, DateTime.Now.TimeOfDay);
             }
+
+            //setting up dispatcherTimer to auto-update time
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1, 0);
+            dispatcherTimer.Tick += DispatcherTimer_Tick;
+            dispatcherTimer.Start();
+        }
+
+        private void DispatcherTimer_Tick(object sender, object e)
+        {
+            timePicker1.Time = DateTime.Now.TimeOfDay;
         }
 
         private void resetButton_Click(object sender, RoutedEventArgs e)
