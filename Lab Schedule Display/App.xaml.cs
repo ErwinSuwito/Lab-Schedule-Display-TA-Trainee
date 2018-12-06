@@ -71,7 +71,7 @@ namespace Lab_Schedule_Display
             e.Handled = true;
         }
 
-        public string connectionString = @"Data Source=.; Initial Catalog=LabSchedule; Integrated Security=SSPI; ";
+        public string connectionString = @"Server=tcp:tatrainee.database.windows.net,1433;Initial Catalog=LabSchedule;Persist Security Info=False;User ID=erwin;Password=tpZQf9f6fb;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         public string ConnectionString { get => connectionString; set => connectionString = value; }
 
         public void Startup()

@@ -56,7 +56,7 @@
                 </GridView.ItemContainerTransitions>
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="datalayer:Labs">
-                        <local:LabItemnew LabName="{x:Bind LabName}" LabLocation="{x:Bind LabLocation}" SelectedTime="{Binding SelectedTime}" Level="{x:Bind Level}"/>
+                        <local:LabItemnew LabName="{x:Bind LabName}" LabLocation="{x:Bind LabLocation}" SelectedTime="{x:Bind SelectedTime}" Level="{x:Bind Level}"/>
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>

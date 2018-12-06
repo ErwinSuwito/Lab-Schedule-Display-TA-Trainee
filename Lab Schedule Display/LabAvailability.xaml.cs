@@ -44,7 +44,7 @@ namespace Lab_Schedule_Display
         private void timePicker1_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
         {
             selectedTime = timePicker1.Time;
-
+            var newHome1 = new newHome();
             AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionString, selectedTime);
             if (AvailableLabsList.Items.Count == 0)
             {
@@ -58,6 +58,7 @@ namespace Lab_Schedule_Display
 
         public ObservableCollection<Labs> GetLabs(string connectionString, TimeSpan timeSpan)
         {
+  
             string GetLabsQuery = "SELECT DISTINCT * FROM labs WHERE labs.CloseTime > CONVERT(time,'" + timePicker1.Time.ToString() + "')";
 
             var labs = new ObservableCollection<Labs>();
