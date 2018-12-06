@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Lab_Schedule_Display.DataLayers;
+using System.Diagnostics;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -32,14 +33,15 @@ namespace Lab_Schedule_Display
         {
             this.InitializeComponent();
 
+            timePicker1.Time = DateTime.Now.TimeOfDay;
             //fetching data from db
             if ((App.Current as App).useLocal == false)
             {
-                AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionStringRemote, DateTime.Now.TimeOfDay);
+                AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionStringRemote);
             }
             else
             {
-                AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionStringLocal, DateTime.Now.TimeOfDay);
+                AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionStringLocal);
             }
 
             //setting up dispatcherTimer to auto-update time
@@ -65,11 +67,11 @@ namespace Lab_Schedule_Display
 
             if ((App.Current as App).useLocal == false)
             {
-                AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionStringRemote, selectedTime);
+                AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionStringRemote);
             }
             else
             {
-                AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionStringLocal, selectedTime);
+                AvailableLabsList.ItemsSource = GetLabs((App.Current as App).ConnectionStringLocal);
             }
             
             if (AvailableLabsList.Items.Count == 0)
@@ -82,10 +84,10 @@ namespace Lab_Schedule_Display
             }
         }
 
-        public ObservableCollection<Labs> GetLabs(string connectionString, TimeSpan timeSpan)
+        public ObservableCollection<Labs> GetLabs(string connectionString)
         {
             string GetLabsQuery = "SELECT DISTINCT * FROM labs WHERE labs.CloseTime > CONVERT(time,'" + timePicker1.Time.ToString() + "')";
-
+            Debug.WriteLine(GetLabsQuery);
             var labs = new ObservableCollection<Labs>();
             try
             {
@@ -104,7 +106,7 @@ namespace Lab_Schedule_Display
                                     var lab = new Labs();
                                     lab.LabName = dr.GetString(0);
                                     lab.LabLocation = dr.GetString(1);
-                                    lab.SelectedTime = timePicker1.Time.ToString();
+                                    lab.SelectedTime = selectedTime.ToString();
                                     lab.Level = "Level " + dr.GetInt32(2).ToString();
                                     labs.Add(lab);
                                 }
