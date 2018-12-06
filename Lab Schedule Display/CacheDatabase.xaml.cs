@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using System.Data.SqlClient;
 using System.Data;
 using System.Diagnostics;
+using Lab_Schedule_Display.DbTables;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -31,7 +32,7 @@ namespace Lab_Schedule_Display
         {
             this.InitializeComponent();
             dataSet = new DataSet("LabSchedule");
-            GetLabScheduleData();
+            GetLabData();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -39,57 +40,75 @@ namespace Lab_Schedule_Display
             
         }
 
-        private void CopyToSqlite()
+        private bool InsertLabsToLocal(string LabName, string Location, int Level, TimeSpan CloseTime)
         {
+            string InsertLabsToLocal = "INSERT INTO labs VALUES(@labname, @location, @level, @closetime";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionStringLocal))
+                {
+                    conn.Open();
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.CommandText = InsertLabsToLocal;
+                            cmd.Parameters.AddWithValue("@labname", LabName);
+                            cmd.Parameters.AddWithValue("@location", Location);
+                            cmd.Parameters.AddWithValue("@level", Level);
+                            cmd.Parameters.AddWithValue("@closetime", CloseTime);
+
+                            cmd.ExecuteNonQuery();
+
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return false;
         }
 
-        private void InitializeSqlite()
+        private void GetLabData()
         {
-
-        }
-
-        private void GetLabScheduleData()
-        {
-            string GetLevelsQuery = "SELECT * FROM labs";
-
+            string LabTableQuery = "SELECT * FROM labs";
+            bool DoInsertLabToLocal = false;
             try
             {
                 using (SqlConnection conn = new SqlConnection((App.Current as App).ConnectionStringRemote))
                 {
-                    //conn.Open();
-                    //if (conn.State == System.Data.ConnectionState.Open)
-                    //{
-                    //    SqlDataAdapter da = new SqlDataAdapter();
-                    //    SqlCommand command = new SqlCommand();
-                    //command.CommandText = "SELECT * FROM labs";
-
-
-                    //    da.SelectCommand = command;
-
-                    //    da.Fill(dataSet, "Labs");
-
-                    //    //SqlDataAdapter da2 = new SqlDataAdapter();
-                    //    //da2.SelectCommand = "SELECT * FROM lecturer";
-
-                    //    //da2.Fill(dataSet, "Lecturer");
-
-                    //    //SqlDataAdapter da3 = new SqlDataAdapter();
-                    //    //da3.SelectCommand = "SELECT * FROM modules";
-
-                    //    //da3.Fill(dataSet, "Modules");
-
-                    //    //SqlDataAdapter da4 = new SqlDataAdapter();
-                    //    //da4.SelectCommand = "SELECT * FROM Schedule";
-
-                    //    //da4.Fill(dataSet, "Schedule");
+                    conn.Open();
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.CommandText = LabTableQuery;
+                            using (SqlDataReader dr = cmd.ExecuteReader())
+                            {
+                                while (dr.Read())
+                                {
+                                    DoInsertLabToLocal = InsertLabsToLocal(dr.GetString(0), dr.GetString(1), dr.GetInt32(2), dr.GetTimeSpan(3));
+                                }
+                            }
+                        }
+                    }
                 }
-                    
-
-                    CopyToSqlite();
             }
             catch (Exception ex)
             { 
                 Helpers.ShowMsgComplete(ex.Message + ex.StackTrace, ex.ToString());
+            }
+            finally
+            {
+                if (DoInsertLabToLocal == true)
+                {
+                    //Copy the other tables.
+                    this.Frame.Navigate(typeof(newHomePage));
+                }
             }
         }
     }

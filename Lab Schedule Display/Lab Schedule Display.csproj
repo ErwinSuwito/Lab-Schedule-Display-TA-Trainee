@@ -112,6 +112,7 @@
     <Compile Include="DataLayers\Levels.cs" />
     <Compile Include="DataLayers\Schedules.cs" />
     <Compile Include="DataLayers\SearchResults.cs" />
+    <Compile Include="DbTables\Labs.cs" />
     <Compile Include="errorParameters.cs" />
     <Compile Include="LabAvailability.xaml.cs">
       <DependentUpon>LabAvailability.xaml</DependentUpon>

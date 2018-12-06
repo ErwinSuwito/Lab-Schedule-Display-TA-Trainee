@@ -14,7 +14,7 @@
                           Height="64"
                           Foreground="White"
                           IsActive="True" />
-            <TextBlock Text="Just a moment..." 
+            <TextBlock Text="Making database backup..." 
                        FontSize="26"
                        Margin="0,8,0,0"/>
         </StackPanel>
