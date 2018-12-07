@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
@@ -25,7 +15,7 @@ namespace Lab_Schedule_Display
     {
         public MapPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -45,7 +35,7 @@ namespace Lab_Schedule_Display
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            mapImage.Source = new BitmapImage(new Uri(this.BaseUri, "/MapAssets/" + whichLab +".jpg"));
+            mapImage.Source = new BitmapImage(new Uri(BaseUri, "/MapAssets/" + whichLab +".jpg"));
         }
 
         private void mapImage_ImageFailed(object sender, ExceptionRoutedEventArgs e)
